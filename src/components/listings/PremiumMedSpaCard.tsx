@@ -37,7 +37,7 @@ export function PremiumMedSpaCard({ spa }: Props) {
                 </h3>
               </Link>
             </div>
-            {spa.cover_image_url && (
+            {spa.cover_image_url ? (
               <div className="w-20 h-20 rounded-xl shadow-md overflow-hidden ml-4 flex-shrink-0">
                 <Image
                   src={spa.cover_image_url}
@@ -46,6 +46,12 @@ export function PremiumMedSpaCard({ spa }: Props) {
                   height={80}
                   className="w-full h-full object-cover"
                 />
+              </div>
+            ) : (
+              <div className="w-20 h-20 rounded-xl shadow-md overflow-hidden ml-4 flex-shrink-0 bg-gradient-to-br from-[#F5E6E0] via-[#FFF8F0] to-[#5C1A33]/10 flex items-center justify-center">
+                <span className="text-3xl font-serif italic text-[#D4AF37]/25 select-none">
+                  {spa.business_name.charAt(0)}
+                </span>
               </div>
             )}
           </div>

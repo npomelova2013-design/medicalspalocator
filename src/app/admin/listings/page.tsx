@@ -19,7 +19,7 @@ const tierConfig: Record<string, { label: string; className: string }> = {
   },
   enterprise: {
     label: 'Enterprise',
-    className: 'bg-gradient-to-r from-purple-100 to-purple-50 text-purple-800 border border-purple-200',
+    className: 'bg-gradient-to-r from-[#B76E79]/15 to-[#5C1A33]/10 text-[#B76E79] border border-[#B76E79]/30',
   },
 }
 
@@ -151,7 +151,7 @@ export default async function AdminListingsPage() {
                         <Link
                           href={`/med-spa/${listing.url_slug}`}
                           target="_blank"
-                          className="inline-flex items-center gap-1.5 text-sm font-medium text-teal-600 hover:text-teal-700 transition-colors"
+                          className="inline-flex items-center gap-1.5 text-sm font-medium text-[#D4AF37] hover:text-[#B76E79] transition-colors"
                         >
                           <ExternalLink className="w-4 h-4" />
                           View

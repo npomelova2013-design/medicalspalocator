@@ -5,6 +5,7 @@ import { CityGrid } from '@/components/home/CityGrid'
 import { StatsBar } from '@/components/home/StatsBar'
 import { FeaturedSpas } from '@/components/home/FeaturedSpas'
 import { TreatmentMarquee } from '@/components/home/TreatmentMarquee'
+import { TrustLogosBar } from '@/components/home/TrustLogosBar'
 import { getCitySummaries } from '@/lib/queries/cities'
 import { getFeaturedSpas, getTotalCount } from '@/lib/queries/med-spas'
 
@@ -23,6 +24,7 @@ export default async function HomePage() {
     <>
       <Hero />
       <StatsBar totalSpas={totalSpas} totalCities={totalCities} />
+      <TrustLogosBar />
       <CityGrid cities={cities} />
       <FeaturedSpas spas={featured} />
 

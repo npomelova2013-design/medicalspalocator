@@ -5,17 +5,17 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || 'https://medicalspalocator.com'
 
 export const COLORS = {
-  primary: '#0d9488', // teal-600
-  primaryDark: '#0f766e', // teal-700
-  gold: '#d97706', // amber-600 (premium)
-  goldLight: '#fbbf24', // amber-400
+  primary: '#D4AF37', // champagne gold
+  primaryDark: '#B76E79', // rose gold
+  gold: '#D4AF37', // champagne gold (premium)
+  goldLight: '#F5E6E0', // warm blush
 } as const
 
 export const LISTING_TIERS = {
   free: { label: 'Basic', color: 'gray' },
   claimed: { label: 'Claimed', color: 'blue' },
   premium: { label: 'Featured', color: 'amber' },
-  enterprise: { label: 'Enterprise', color: 'purple' },
+  enterprise: { label: 'Enterprise', color: 'rose' },
 } as const
 
 export const SERVICE_OPTIONS = [

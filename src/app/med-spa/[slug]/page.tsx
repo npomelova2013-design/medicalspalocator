@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { MapPin, Globe, Mail } from 'lucide-react'
 import { getMedSpaBySlug, getAllSlugs, getNearbySpas } from '@/lib/queries/med-spas'
 import { StarRating } from '@/components/shared/StarRating'
@@ -118,6 +119,54 @@ export default async function ListingPage({ params }: Props) {
                     <p className="text-[#5C1A33] font-medium text-sm">Special Offer: {spa.special_offer}</p>
                   </div>
                 )}
+              </div>
+            )}
+
+            {/* Cover Image — for non-premium listings */}
+            {!isPremium && spa.cover_image_url && (
+              <div className="rounded-2xl overflow-hidden border border-[#D4AF37]/10 shadow-sm">
+                <Image
+                  src={spa.cover_image_url}
+                  alt={spa.business_name}
+                  width={800}
+                  height={400}
+                  className="w-full h-64 md:h-80 object-cover"
+                />
+              </div>
+            )}
+
+            {/* Photo Gallery */}
+            {spa.gallery_urls && spa.gallery_urls.length > 0 && (
+              <div className="bg-white border border-[#D4AF37]/10 rounded-2xl p-8 shadow-sm">
+                <h2 className="text-xl font-serif italic font-semibold text-[#2C1810] mb-5">Gallery</h2>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  {spa.gallery_urls.slice(0, 6).map((url, i) => (
+                    <div key={i} className="aspect-square rounded-xl overflow-hidden border border-[#D4AF37]/10">
+                      <Image
+                        src={url}
+                        alt={`${spa.business_name} photo ${i + 1}`}
+                        width={300}
+                        height={300}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Video — for premium listings */}
+            {isPremium && spa.video_url && (
+              <div className="rounded-2xl overflow-hidden border border-[#D4AF37]/10 shadow-sm">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full aspect-video object-cover"
+                >
+                  <source src={spa.video_url} type="video/mp4" />
+                </video>
               </div>
             )}
 

@@ -1,3 +1,5 @@
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 import { MedSpaCard } from '@/components/listings/MedSpaCard'
 import { PremiumMedSpaCard } from '@/components/listings/PremiumMedSpaCard'
 import type { MedSpaCard as MedSpaCardType } from '@/types/database'
@@ -30,6 +32,16 @@ export function FeaturedSpas({ spas }: Props) {
               ? <PremiumMedSpaCard key={spa.id} spa={spa} />
               : <MedSpaCard key={spa.id} spa={spa} />
           ))}
+        </div>
+
+        <div className="text-center mt-10">
+          <Link
+            href="/search"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-[#B76E79] hover:text-[#D4AF37] transition-colors"
+          >
+            View All Med Spas
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </div>
     </section>

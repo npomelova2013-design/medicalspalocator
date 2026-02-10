@@ -103,7 +103,7 @@ export function Header() {
               <Link
                 href="/search"
                 className={`relative text-[13px] font-medium tracking-wide uppercase transition-colors duration-300 group py-1 ${
-                  scrolled ? 'text-[#2C1810]/60 hover:text-[#2C1810]' : 'text-white/70 hover:text-white'
+                  scrolled ? 'text-[#2C1810]/80 hover:text-[#2C1810]' : 'text-white/90 hover:text-white'
                 }`}
               >
                 Browse

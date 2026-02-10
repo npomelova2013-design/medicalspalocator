@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { MapPin } from 'lucide-react'
+import { MapPin, Sparkles } from 'lucide-react'
 import { StarRating } from '@/components/shared/StarRating'
 import { PremiumBadge } from '@/components/shared/PremiumBadge'
 import { VerifiedBadge } from '@/components/shared/VerifiedBadge'
@@ -19,7 +19,7 @@ export function MedSpaCard({ spa }: Props) {
   return (
     <div className="gradient-border-hover group">
       <div className="rounded-2xl border border-[#D4AF37]/10 bg-white overflow-hidden transition-all duration-300">
-        {spa.cover_image_url && (
+        {spa.cover_image_url ? (
           <div className="h-40 overflow-hidden">
             <Image
               src={spa.cover_image_url}
@@ -28,6 +28,13 @@ export function MedSpaCard({ spa }: Props) {
               height={160}
               className="w-full h-full object-cover"
             />
+          </div>
+        ) : (
+          <div className="h-40 bg-gradient-to-br from-[#F5E6E0] via-[#FFF8F0] to-[#5C1A33]/10 flex items-center justify-center relative overflow-hidden">
+            <Sparkles className="absolute top-3 right-3 w-4 h-4 text-[#D4AF37]/15" />
+            <span className="text-5xl font-serif italic text-[#D4AF37]/20 select-none">
+              {spa.business_name.charAt(0)}
+            </span>
           </div>
         )}
 

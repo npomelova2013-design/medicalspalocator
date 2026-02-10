@@ -20,7 +20,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <div className="p-6 border-b border-slate-800">
           <Link href="/admin" className="block">
             <h1 className="font-serif text-xl font-bold text-white">
-              MedSpa <span className="text-teal-400">Admin</span>
+              MedSpa <span className="text-[#D4AF37]">Admin</span>
             </h1>
           </Link>
         </div>

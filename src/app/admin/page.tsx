@@ -70,8 +70,8 @@ export default async function AdminDashboardPage() {
             >
               <div className="flex items-center justify-between mb-4">
                 <span className="text-sm font-medium text-slate-500">{kpi.label}</span>
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-50 to-teal-100 flex items-center justify-center">
-                  <Icon className="w-5 h-5 text-teal-600" />
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#F5E6E0] to-[#D4AF37]/10 flex items-center justify-center">
+                  <Icon className="w-5 h-5 text-[#D4AF37]" />
                 </div>
               </div>
               <p className="text-3xl font-serif font-bold text-gradient">
