@@ -39,25 +39,25 @@ export function ClaimForm({ medSpaId }: Props) {
     }
   }
 
-  const inputClass = "mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-400 transition"
-  const selectClass = "mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-400 transition appearance-none"
+  const inputClass = "mt-1.5 w-full rounded-xl border border-[#D4AF37]/15 bg-[#FFF8F0]/50 px-4 py-2.5 text-sm text-[#2C1810] placeholder:text-[#2C1810]/40 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/20 focus:border-[#D4AF37]/40 transition"
+  const selectClass = "mt-1.5 w-full rounded-xl border border-[#D4AF37]/15 bg-[#FFF8F0]/50 px-4 py-2.5 text-sm text-[#2C1810] focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/20 focus:border-[#D4AF37]/40 transition appearance-none"
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label htmlFor="name" className="text-sm font-medium text-slate-700">Your Name *</label>
+        <label htmlFor="name" className="text-sm font-medium text-[#2C1810]/70">Your Name *</label>
         <input id="name" name="name" required placeholder="Dr. Jane Smith" className={inputClass} />
       </div>
       <div>
-        <label htmlFor="email" className="text-sm font-medium text-slate-700">Email *</label>
+        <label htmlFor="email" className="text-sm font-medium text-[#2C1810]/70">Email *</label>
         <input id="email" name="email" type="email" required placeholder="jane@yourspa.com" className={inputClass} />
       </div>
       <div>
-        <label htmlFor="phone" className="text-sm font-medium text-slate-700">Phone *</label>
+        <label htmlFor="phone" className="text-sm font-medium text-[#2C1810]/70">Phone *</label>
         <input id="phone" name="phone" type="tel" required placeholder="(555) 123-4567" className={inputClass} />
       </div>
       <div>
-        <label htmlFor="role" className="text-sm font-medium text-slate-700">Your Role</label>
+        <label htmlFor="role" className="text-sm font-medium text-[#2C1810]/70">Your Role</label>
         <select id="role" name="role" className={selectClass}>
           <option value="owner">Owner</option>
           <option value="manager">Practice Manager</option>
@@ -66,7 +66,7 @@ export function ClaimForm({ medSpaId }: Props) {
         </select>
       </div>
       <div>
-        <label htmlFor="howHeard" className="text-sm font-medium text-slate-700">How did you hear about us?</label>
+        <label htmlFor="howHeard" className="text-sm font-medium text-[#2C1810]/70">How did you hear about us?</label>
         <select id="howHeard" name="howHeard" className={selectClass}>
           <option value="google">Google Search</option>
           <option value="called">Your team called me</option>
@@ -76,7 +76,7 @@ export function ClaimForm({ medSpaId }: Props) {
         </select>
       </div>
       <div>
-        <label htmlFor="message" className="text-sm font-medium text-slate-700">Message (optional)</label>
+        <label htmlFor="message" className="text-sm font-medium text-[#2C1810]/70">Message (optional)</label>
         <textarea id="message" name="message" rows={3} placeholder="Any questions or comments?" className={`${inputClass} resize-none`} />
       </div>
 
@@ -85,7 +85,7 @@ export function ClaimForm({ medSpaId }: Props) {
       <button
         type="submit"
         disabled={loading}
-        className="w-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-medium py-3 rounded-xl transition-all shadow-md shadow-teal-500/20 hover:shadow-lg hover:shadow-teal-500/30 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        className="w-full bg-gradient-to-r from-[#D4AF37] to-[#B76E79] hover:from-[#B76E79] hover:to-[#D4AF37] text-white font-medium py-3 rounded-xl transition-all shadow-md shadow-[#D4AF37]/20 hover:shadow-lg hover:shadow-[#D4AF37]/30 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
         {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
         Submit Claim Request

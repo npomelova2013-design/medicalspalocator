@@ -30,7 +30,7 @@ export function ClickToCall({ phone, medSpaId, className = '', showIcon = true, 
       <a
         href={formatPhoneHref(phone)}
         onClick={handleClick}
-        className={`inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-full hover:from-teal-600 hover:to-teal-700 transition-all font-medium shadow-md shadow-teal-500/20 hover:shadow-lg hover:shadow-teal-500/30 ${className}`}
+        className={`inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#D4AF37] to-[#B76E79] text-white rounded-full hover:from-[#B76E79] hover:to-[#D4AF37] transition-all font-medium shadow-md shadow-[#D4AF37]/20 hover:shadow-lg hover:shadow-[#D4AF37]/30 ${className}`}
       >
         <Phone className="w-4 h-4" />
         {formatPhone(phone)}
@@ -42,7 +42,7 @@ export function ClickToCall({ phone, medSpaId, className = '', showIcon = true, 
     <a
       href={formatPhoneHref(phone)}
       onClick={handleClick}
-      className={`inline-flex items-center gap-1.5 text-teal-600 hover:text-teal-700 font-medium transition ${className}`}
+      className={`inline-flex items-center gap-1.5 text-[#B76E79] hover:text-[#D4AF37] font-medium transition ${className}`}
     >
       {showIcon && <Phone className="w-4 h-4" />}
       {formatPhone(phone)}

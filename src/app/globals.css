@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 220 20% 18%;
+    --background: 30 100% 97%;
+    --foreground: 20 30% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 18%;
+    --card-foreground: 20 30% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 18%;
-    --primary: 168 65% 38%;
+    --popover-foreground: 20 30% 12%;
+    --primary: 39 65% 52%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 220 20% 18%;
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 8% 46%;
-    --accent: 39 95% 52%;
+    --secondary: 20 30% 95%;
+    --secondary-foreground: 20 30% 12%;
+    --muted: 20 20% 95%;
+    --muted-foreground: 20 8% 46%;
+    --accent: 350 30% 58%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 168 65% 38%;
+    --border: 30 20% 90%;
+    --input: 30 20% 90%;
+    --ring: 39 65% 52%;
     --radius: 0.75rem;
   }
 }
@@ -32,7 +32,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-[#FFF8F0] text-foreground antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply tracking-tight;
@@ -40,27 +40,68 @@
 }
 
 @layer components {
+  /* ─── Gradient Orbs ─── */
   .gradient-orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.35;
+    filter: blur(90px);
+    opacity: 0.50;
     pointer-events: none;
+    will-change: transform;
   }
-  .gradient-orb-teal {
-    background: radial-gradient(circle, rgba(13, 148, 136, 0.5) 0%, transparent 70%);
+  .gradient-orb-rose-gold {
+    background: radial-gradient(circle, rgba(183, 110, 121, 0.45) 0%, transparent 70%);
   }
-  .gradient-orb-gold {
-    background: radial-gradient(circle, rgba(245, 158, 11, 0.4) 0%, transparent 70%);
+  .gradient-orb-champagne {
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.40) 0%, transparent 70%);
   }
-  .gradient-orb-purple {
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
+  .gradient-orb-mauve {
+    background: radial-gradient(circle, rgba(201, 160, 220, 0.35) 0%, transparent 70%);
+  }
+  .gradient-orb-warm-blush {
+    background: radial-gradient(circle, rgba(245, 230, 224, 0.50) 0%, transparent 70%);
   }
 
+  /* ─── Video Overlay ─── */
+  .video-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(44, 24, 16, 0.55) 0%,
+      rgba(92, 26, 51, 0.35) 40%,
+      rgba(44, 24, 16, 0.45) 70%,
+      rgba(92, 26, 51, 0.60) 100%
+    );
+  }
+
+  /* ─── Glass Card ─── */
   .glass-card {
-    @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-lg;
+    @apply bg-white/70 backdrop-blur-2xl border border-[#D4AF37]/10 shadow-xl;
   }
 
+  /* ─── Text Gradients ─── */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #D4AF37, #B76E79, #D4AF37);
+  }
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #D4AF37, #e8b83e, #D4AF37);
+  }
+  .text-gradient-luxury {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #D4AF37, #B76E79, #D4AF37);
+  }
+  .instagram-gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #833AB4 0%, #E1306C 25%, #F77737 50%, #FCAF45 75%, #D4AF37 100%);
+  }
+
+  /* ─── Gold Accent Line ─── */
+  .gold-accent-line {
+    @apply bg-gradient-to-r from-[#D4AF37] via-[#B76E79] to-[#D4AF37];
+  }
+
+  /* ─── Animations ─── */
   .fade-in {
     animation: fadeIn 0.6s ease-out forwards;
   }
@@ -70,7 +111,7 @@
   }
 
   .shimmer {
-    background: linear-gradient(110deg, transparent 33%, rgba(255, 255, 255, 0.3) 50%, transparent 67%);
+    background: linear-gradient(110deg, transparent 33%, rgba(212, 175, 55, 0.2) 50%, transparent 67%);
     background-size: 200% 100%;
     animation: shimmer 2.5s ease-in-out infinite;
   }
@@ -79,15 +120,7 @@
     100% { background-position: -200% 0; }
   }
 
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #0d9488, #14b8a6, #0d9488);
-  }
-  .text-gradient-gold {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #d97706, #f59e0b, #d97706);
-  }
-
+  /* ─── Hover Effects ─── */
   .hover-lift {
     @apply transition-all duration-300;
   }
@@ -95,8 +128,39 @@
     @apply -translate-y-1 shadow-xl;
   }
 
+  /* ─── Section Padding ─── */
   .section-padding {
-    @apply py-20 md:py-28;
+    @apply py-24 md:py-36;
+  }
+
+  /* ─── Gradient Border Hover ─── */
+  .gradient-border-hover {
+    @apply relative p-[1px] rounded-2xl transition-all duration-500;
+    background: transparent;
+  }
+  .gradient-border-hover:hover {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(183, 110, 121, 0.3), rgba(212, 175, 55, 0.4));
+  }
+  .gradient-border-hover > * {
+    @apply rounded-[calc(1rem-1px)];
+  }
+
+  /* ─── Warm Gradient Button ─── */
+  .btn-warm-gradient {
+    @apply bg-gradient-to-r from-[#D4AF37] to-[#B76E79] text-white font-medium rounded-full transition-all;
+  }
+  .btn-warm-gradient:hover {
+    @apply shadow-gold-glow from-[#B76E79] to-[#D4AF37];
+  }
+
+  /* ─── Marquee Animation ─── */
+  .marquee-track {
+    display: flex;
+    animation: marquee 30s linear infinite;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
 }
 
@@ -107,11 +171,11 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #D4AF37;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #B76E79;
 }
 
 html {

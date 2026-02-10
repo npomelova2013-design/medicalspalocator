@@ -28,27 +28,27 @@ export default async function SearchPage({ searchParams }: Props) {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-      <nav className="text-sm text-gray-500 mb-4">
-        <Link href="/" className="hover:text-teal-600">Home</Link>
+      <nav className="text-sm text-[#2C1810]/50 mb-4">
+        <Link href="/" className="hover:text-[#B76E79]">Home</Link>
         <span className="mx-2">/</span>
-        <span className="text-gray-900">Search</span>
+        <span className="text-[#2C1810]">Search</span>
       </nav>
 
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">
+      <h1 className="text-3xl font-bold text-[#2C1810] mb-2">
         {query ? `Search Results` : 'Search Med Spas'}
       </h1>
 
       {query && (
-        <p className="text-gray-600 mb-6">
+        <p className="text-[#2C1810]/60 mb-6">
           {count} result{count !== 1 ? 's' : ''} for &ldquo;{query}&rdquo;
         </p>
       )}
 
       {!query && (
         <div className="text-center py-16">
-          <Search className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-          <p className="text-gray-500 text-lg mb-2">Enter a search term to find med spas</p>
-          <p className="text-gray-400">Try searching by city name, treatment, or spa name</p>
+          <Search className="w-16 h-16 text-[#2C1810]/30 mx-auto mb-4" />
+          <p className="text-[#2C1810]/50 text-lg mb-2">Enter a search term to find med spas</p>
+          <p className="text-[#2C1810]/40">Try searching by city name, treatment, or spa name</p>
         </div>
       )}
 
