@@ -32,7 +32,7 @@ export default async function HomePage() {
       <TreatmentMarquee />
 
       {/* Dark CTA Section */}
-      <section className="relative bg-[#5C1A33] py-24 md:py-36 overflow-hidden">
+      <section className="relative bg-[#1a1a2e] py-24 md:py-36 overflow-hidden">
         {/* Floating orbs */}
         <div className="gradient-orb gradient-orb-rose-gold absolute -top-20 -left-20 h-[400px] w-[400px] animate-float opacity-20" />
         <div className="gradient-orb gradient-orb-champagne absolute -bottom-24 -right-24 h-[350px] w-[350px] animate-float-delayed opacity-15" />
@@ -44,12 +44,12 @@ export default async function HomePage() {
             <br />
             <span className="instagram-gradient-text">Starts Here</span>
           </h2>
-          <p className="mt-6 text-lg text-[#D4AF37]/50 max-w-2xl mx-auto">
+          <p className="mt-6 text-lg text-[#833AB4]/50 max-w-2xl mx-auto">
             Browse hundreds of verified med spas, compare ratings, and find the best providers for Botox, fillers, laser treatments, and more.
           </p>
           <Link
             href="/search"
-            className="inline-flex items-center gap-2 mt-10 bg-gradient-to-r from-[#D4AF37] to-[#B76E79] text-white font-semibold px-8 py-4 rounded-full shadow-lg shadow-[#D4AF37]/20 hover:shadow-xl hover:shadow-[#D4AF37]/30 transition-all"
+            className="inline-flex items-center gap-2 mt-10 bg-gradient-to-r from-[#833AB4] to-[#E1306C] text-white font-semibold px-8 py-4 rounded-full shadow-lg shadow-[#833AB4]/20 hover:shadow-xl hover:shadow-[#833AB4]/30 transition-all"
           >
             Explore All Med Spas
             <ArrowRight className="w-4 h-4" />

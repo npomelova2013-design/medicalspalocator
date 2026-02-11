@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 30 100% 97%;
-    --foreground: 20 30% 12%;
+    --background: 0 0% 98%;
+    --foreground: 0 0% 15%;
     --card: 0 0% 100%;
-    --card-foreground: 20 30% 12%;
+    --card-foreground: 0 0% 15%;
     --popover: 0 0% 100%;
-    --popover-foreground: 20 30% 12%;
-    --primary: 39 65% 52%;
+    --popover-foreground: 0 0% 15%;
+    --primary: 271 51% 47%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 20 30% 95%;
-    --secondary-foreground: 20 30% 12%;
-    --muted: 20 20% 95%;
-    --muted-foreground: 20 8% 46%;
-    --accent: 350 30% 58%;
+    --secondary: 270 20% 96%;
+    --secondary-foreground: 0 0% 15%;
+    --muted: 270 10% 96%;
+    --muted-foreground: 0 0% 46%;
+    --accent: 337 73% 54%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 30 20% 90%;
-    --input: 30 20% 90%;
-    --ring: 39 65% 52%;
+    --border: 270 20% 92%;
+    --input: 270 20% 92%;
+    --ring: 271 51% 47%;
     --radius: 0.75rem;
   }
 }
@@ -32,7 +32,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-[#FFF8F0] text-foreground antialiased;
+    @apply bg-[#FAFAFA] text-foreground antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply tracking-tight;
@@ -50,66 +50,66 @@
     will-change: transform;
   }
   .gradient-orb-rose-gold {
-    background: radial-gradient(circle, rgba(183, 110, 121, 0.45) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(225, 48, 108, 0.45) 0%, transparent 70%);
   }
   .gradient-orb-champagne {
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.40) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(131, 58, 180, 0.40) 0%, transparent 70%);
   }
   .gradient-orb-mauve {
-    background: radial-gradient(circle, rgba(201, 160, 220, 0.35) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(88, 81, 216, 0.35) 0%, transparent 70%);
   }
   .gradient-orb-warm-blush {
-    background: radial-gradient(circle, rgba(245, 230, 224, 0.50) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(252, 175, 69, 0.50) 0%, transparent 70%);
   }
 
   /* ─── Video Overlay ─── */
   .video-overlay {
     background: linear-gradient(
       to bottom,
-      rgba(44, 24, 16, 0.55) 0%,
-      rgba(92, 26, 51, 0.35) 40%,
-      rgba(44, 24, 16, 0.45) 70%,
-      rgba(92, 26, 51, 0.60) 100%
+      rgba(13, 13, 26, 0.55) 0%,
+      rgba(26, 26, 46, 0.35) 40%,
+      rgba(13, 13, 26, 0.45) 70%,
+      rgba(26, 26, 46, 0.60) 100%
     );
   }
 
   /* ─── Glass Card ─── */
   .glass-card {
-    @apply bg-white/70 backdrop-blur-2xl border border-[#D4AF37]/10 shadow-xl;
+    @apply bg-white/70 backdrop-blur-2xl border border-[#833AB4]/10 shadow-xl;
   }
 
   /* ─── Text Gradients ─── */
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #D4AF37, #B76E79, #D4AF37);
+    background-image: linear-gradient(135deg, #833AB4, #E1306C, #833AB4);
   }
   .text-gradient-gold {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #D4AF37, #e8b83e, #D4AF37);
+    background-image: linear-gradient(135deg, #833AB4, #9B30FF, #833AB4);
   }
   .text-gradient-luxury {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #D4AF37, #B76E79, #D4AF37);
+    background-image: linear-gradient(135deg, #833AB4, #C13584, #E1306C, #F77737, #FCAF45);
   }
   .instagram-gradient-text {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #833AB4 0%, #E1306C 25%, #F77737 50%, #FCAF45 75%, #D4AF37 100%);
+    background-image: linear-gradient(135deg, #405DE6 0%, #5851D8 12%, #833AB4 25%, #C13584 37%, #E1306C 50%, #F56040 62%, #F77737 75%, #FCAF45 87%, #FFDC80 100%);
   }
   .instagram-gradient-text-warm {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #E1306C 0%, #F77737 30%, #FCAF45 60%, #D4AF37 100%);
+    background-image: linear-gradient(135deg, #C13584 0%, #E1306C 25%, #F56040 50%, #F77737 75%, #FCAF45 100%);
   }
 
   /* ─── Luxury Divider ─── */
   .luxury-divider {
     @apply w-full h-px;
-    background: linear-gradient(90deg, transparent 0%, #D4AF37 20%, #B76E79 50%, #D4AF37 80%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, #833AB4 20%, #E1306C 50%, #833AB4 80%, transparent 100%);
     opacity: 0.2;
   }
 
   /* ─── Gold Accent Line ─── */
   .gold-accent-line {
-    @apply bg-gradient-to-r from-[#D4AF37] via-[#B76E79] to-[#D4AF37];
+    @apply bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#833AB4];
   }
 
   /* ─── Animations ─── */
@@ -122,7 +122,7 @@
   }
 
   .shimmer {
-    background: linear-gradient(110deg, transparent 33%, rgba(212, 175, 55, 0.2) 50%, transparent 67%);
+    background: linear-gradient(110deg, transparent 33%, rgba(131, 58, 180, 0.2) 50%, transparent 67%);
     background-size: 200% 100%;
     animation: shimmer 2.5s ease-in-out infinite;
   }
@@ -150,7 +150,7 @@
     background: transparent;
   }
   .gradient-border-hover:hover {
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(183, 110, 121, 0.3), rgba(212, 175, 55, 0.4));
+    background: linear-gradient(135deg, rgba(131, 58, 180, 0.4), rgba(225, 48, 108, 0.3), rgba(131, 58, 180, 0.4));
   }
   .gradient-border-hover > * {
     @apply rounded-[calc(1rem-1px)];
@@ -158,10 +158,10 @@
 
   /* ─── Warm Gradient Button ─── */
   .btn-warm-gradient {
-    @apply bg-gradient-to-r from-[#D4AF37] to-[#B76E79] text-white font-medium rounded-full transition-all;
+    @apply bg-gradient-to-r from-[#833AB4] to-[#E1306C] text-white font-medium rounded-full transition-all;
   }
   .btn-warm-gradient:hover {
-    @apply shadow-gold-glow from-[#B76E79] to-[#D4AF37];
+    @apply shadow-purple-glow from-[#E1306C] to-[#833AB4];
   }
 
   /* ─── Marquee Animation ─── */
@@ -182,11 +182,11 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D4AF37;
+  background: #833AB4;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #B76E79;
+  background: #E1306C;
 }
 
 html {

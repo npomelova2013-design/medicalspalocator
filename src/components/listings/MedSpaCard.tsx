@@ -18,7 +18,7 @@ export function MedSpaCard({ spa }: Props) {
 
   return (
     <div className="gradient-border-hover group">
-      <div className="rounded-2xl border border-[#D4AF37]/10 bg-white overflow-hidden transition-all duration-300">
+      <div className="rounded-2xl border border-[#833AB4]/10 bg-white overflow-hidden transition-all duration-300">
         {spa.cover_image_url ? (
           <div className="h-40 overflow-hidden">
             <Image
@@ -30,9 +30,9 @@ export function MedSpaCard({ spa }: Props) {
             />
           </div>
         ) : (
-          <div className="h-40 bg-gradient-to-br from-[#F5E6E0] via-[#FFF8F0] to-[#5C1A33]/10 flex items-center justify-center relative overflow-hidden">
-            <Sparkles className="absolute top-3 right-3 w-4 h-4 text-[#D4AF37]/15" />
-            <span className="text-5xl font-serif italic text-[#D4AF37]/20 select-none">
+          <div className="h-40 bg-gradient-to-br from-[#F0E6F6] via-[#FAFAFA] to-[#1a1a2e]/10 flex items-center justify-center relative overflow-hidden">
+            <Sparkles className="absolute top-3 right-3 w-4 h-4 text-[#833AB4]/15" />
+            <span className="text-5xl font-serif italic text-[#833AB4]/20 select-none">
               {spa.business_name.charAt(0)}
             </span>
           </div>
@@ -40,7 +40,7 @@ export function MedSpaCard({ spa }: Props) {
 
         <div className="p-6">
           <Link href={`/med-spa/${spa.url_slug}`} className="group/link">
-            <h3 className="text-lg font-semibold text-[#2C1810] group-hover/link:text-[#B76E79] transition truncate">
+            <h3 className="text-lg font-semibold text-[#262626] group-hover/link:text-[#E1306C] transition truncate">
               {spa.business_name}
             </h3>
           </Link>
@@ -54,8 +54,8 @@ export function MedSpaCard({ spa }: Props) {
             <StarRating rating={spa.google_rating} count={spa.google_reviews_count} size="sm" />
           </div>
 
-          <div className="flex items-center gap-1.5 text-[#2C1810]/50 text-sm mt-2">
-            <MapPin className="w-3.5 h-3.5 text-[#D4AF37] flex-shrink-0" />
+          <div className="flex items-center gap-1.5 text-[#262626]/50 text-sm mt-2">
+            <MapPin className="w-3.5 h-3.5 text-[#833AB4] flex-shrink-0" />
             <span className="truncate">
               {spa.address ? `${spa.address}, ` : ''}{spa.city}, {spa.state} {spa.zip_code}
             </span>
@@ -69,11 +69,11 @@ export function MedSpaCard({ spa }: Props) {
             </div>
           )}
 
-          <div className="flex justify-between items-center mt-5 pt-4 border-t border-[#D4AF37]/10">
+          <div className="flex justify-between items-center mt-5 pt-4 border-t border-[#833AB4]/10">
             <ClickToCall phone={spa.phone} medSpaId={spa.id} />
             <Link
               href={`/med-spa/${spa.url_slug}`}
-              className="text-sm font-medium text-[#B76E79] hover:text-[#D4AF37] transition"
+              className="text-sm font-medium text-[#E1306C] hover:text-[#833AB4] transition"
             >
               View Profile &rarr;
             </Link>

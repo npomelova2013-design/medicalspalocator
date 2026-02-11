@@ -50,7 +50,7 @@ export function Header() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-[#FFF8F0]/95 backdrop-blur-lg border-b border-[#D4AF37]/10 shadow-[0_1px_3px_rgba(44,24,16,0.06)]'
+            ? 'bg-[#FAFAFA]/95 backdrop-blur-lg border-b border-[#833AB4]/10 shadow-[0_1px_3px_rgba(44,24,16,0.06)]'
             : 'bg-transparent border-b border-transparent'
         }`}
       >
@@ -59,14 +59,14 @@ export function Header() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-1 group shrink-0">
               <span className={`font-serif text-xl tracking-tight transition-colors duration-300 ${
-                scrolled ? 'text-[#2C1810]' : 'text-white'
+                scrolled ? 'text-[#262626]' : 'text-white'
               }`}>
                 Medical Spa
               </span>
               <span className={`font-serif text-xl tracking-tight transition-colors duration-300 ${
                 scrolled
-                  ? 'bg-gradient-to-r from-[#D4AF37] to-[#B76E79] bg-clip-text text-transparent'
-                  : 'text-[#D4AF37]/80'
+                  ? 'bg-gradient-to-r from-[#833AB4] to-[#E1306C] bg-clip-text text-transparent'
+                  : 'text-[#833AB4]/80'
               }`}>
                 Locator
               </span>
@@ -78,8 +78,8 @@ export function Header() {
                 <Search
                   className={`absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors duration-200 ${
                     searchFocused
-                      ? 'text-[#D4AF37]'
-                      : scrolled ? 'text-[#2C1810]/40' : 'text-white/50'
+                      ? 'text-[#833AB4]'
+                      : scrolled ? 'text-[#262626]/40' : 'text-white/50'
                   }`}
                 />
                 <input
@@ -91,8 +91,8 @@ export function Header() {
                   placeholder="Search by city, treatment, or spa name..."
                   className={`w-full pl-11 pr-4 py-2.5 rounded-full text-sm transition-all duration-300 focus:outline-none ${
                     scrolled
-                      ? 'bg-[#F5E6E0]/50 text-[#2C1810] placeholder:text-[#2C1810]/40 border border-transparent focus:border-[#D4AF37]/30 focus:bg-white focus:shadow-[0_0_0_3px_rgba(212,175,55,0.08)]'
-                      : 'bg-white/10 backdrop-blur-md text-white placeholder:text-white/50 border border-[#D4AF37]/20 focus:border-[#D4AF37]/40 focus:bg-white/15'
+                      ? 'bg-[#F0E6F6]/50 text-[#262626] placeholder:text-[#262626]/40 border border-transparent focus:border-[#833AB4]/30 focus:bg-white focus:shadow-[0_0_0_3px_rgba(212,175,55,0.08)]'
+                      : 'bg-white/10 backdrop-blur-md text-white placeholder:text-white/50 border border-[#833AB4]/20 focus:border-[#833AB4]/40 focus:bg-white/15'
                   }`}
                 />
               </div>
@@ -103,20 +103,20 @@ export function Header() {
               <Link
                 href="/search"
                 className={`relative text-[13px] font-medium tracking-wide uppercase transition-colors duration-300 group py-1 ${
-                  scrolled ? 'text-[#2C1810]/80 hover:text-[#2C1810]' : 'text-white/90 hover:text-white'
+                  scrolled ? 'text-[#262626]/80 hover:text-[#262626]' : 'text-white/90 hover:text-white'
                 }`}
               >
                 Browse
                 <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1.5px] transition-all duration-300 group-hover:w-full ${
-                  scrolled ? 'bg-[#D4AF37]' : 'bg-[#D4AF37]'
+                  scrolled ? 'bg-[#833AB4]' : 'bg-[#833AB4]'
                 }`} />
               </Link>
               <Link
                 href="/claim/info"
                 className={`inline-flex items-center gap-1.5 text-[13px] font-medium tracking-wide px-5 py-2.5 rounded-full transition-all duration-300 shadow-sm ${
                   scrolled
-                    ? 'text-white bg-gradient-to-r from-[#D4AF37] to-[#B76E79] hover:shadow-md hover:shadow-[#D4AF37]/20'
-                    : 'text-white bg-white/15 backdrop-blur-md border border-[#D4AF37]/25 hover:bg-white/25'
+                    ? 'text-white bg-gradient-to-r from-[#833AB4] to-[#E1306C] hover:shadow-md hover:shadow-[#833AB4]/20'
+                    : 'text-white bg-white/15 backdrop-blur-md border border-[#833AB4]/25 hover:bg-white/25'
                 }`}
               >
                 List Your Spa
@@ -128,7 +128,7 @@ export function Header() {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className={`md:hidden relative z-50 p-2 -mr-2 transition-colors duration-300 ${
-                mobileOpen || scrolled ? 'text-[#2C1810] hover:text-[#B76E79]' : 'text-white hover:text-[#D4AF37]'
+                mobileOpen || scrolled ? 'text-[#262626] hover:text-[#E1306C]' : 'text-white hover:text-[#833AB4]'
               }`}
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             >
@@ -164,7 +164,7 @@ export function Header() {
       >
         {/* Backdrop */}
         <div
-          className={`absolute inset-0 bg-[#FFF8F0]/95 backdrop-blur-xl transition-opacity duration-500 ${
+          className={`absolute inset-0 bg-[#FAFAFA]/95 backdrop-blur-xl transition-opacity duration-500 ${
             mobileOpen ? 'opacity-100' : 'opacity-0'
           }`}
           onClick={closeMobile}
@@ -180,13 +180,13 @@ export function Header() {
             }`}
           >
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#B76E79]" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#E1306C]" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search treatments, cities..."
-                className="w-full pl-11 pr-4 py-3.5 bg-white rounded-full text-sm text-[#2C1810] placeholder:text-[#2C1810]/40 border border-[#D4AF37]/20 focus:border-[#D4AF37]/40 focus:shadow-[0_0_0_3px_rgba(212,175,55,0.08)] focus:outline-none transition-all duration-200"
+                className="w-full pl-11 pr-4 py-3.5 bg-white rounded-full text-sm text-[#262626] placeholder:text-[#262626]/40 border border-[#833AB4]/20 focus:border-[#833AB4]/40 focus:shadow-[0_0_0_3px_rgba(212,175,55,0.08)] focus:outline-none transition-all duration-200"
               />
             </div>
           </form>
@@ -196,7 +196,7 @@ export function Header() {
             <Link
               href="/search"
               onClick={closeMobile}
-              className={`text-2xl font-serif italic text-[#2C1810] hover:text-[#B76E79] transition-all duration-500 delay-200 transform ${
+              className={`text-2xl font-serif italic text-[#262626] hover:text-[#E1306C] transition-all duration-500 delay-200 transform ${
                 mobileOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
               }`}
             >
@@ -205,7 +205,7 @@ export function Header() {
             <Link
               href="/claim/info"
               onClick={closeMobile}
-              className={`inline-flex items-center gap-2 text-lg font-medium text-white bg-gradient-to-r from-[#D4AF37] to-[#B76E79] px-8 py-3.5 rounded-full shadow-gold-glow transition-all duration-500 delay-300 transform ${
+              className={`inline-flex items-center gap-2 text-lg font-medium text-white bg-gradient-to-r from-[#833AB4] to-[#E1306C] px-8 py-3.5 rounded-full shadow-purple-glow transition-all duration-500 delay-300 transform ${
                 mobileOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
               }`}
             >

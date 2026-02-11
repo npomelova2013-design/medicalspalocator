@@ -23,7 +23,7 @@ export function TreatmentTag({ treatment, clickable = false, onClick }: Treatmen
 
   return (
     <span
-      className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-[#F5E6E0]/80 text-[#B76E79] border border-[#D4AF37]/20 ${clickable ? 'cursor-pointer hover:bg-[#F5E6E0] hover:border-[#D4AF37]/40 transition' : ''}`}
+      className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-[#F0E6F6]/80 text-[#E1306C] border border-[#833AB4]/20 ${clickable ? 'cursor-pointer hover:bg-[#F0E6F6] hover:border-[#833AB4]/40 transition' : ''}`}
       onClick={clickable ? onClick : undefined}
     >
       {displayText}

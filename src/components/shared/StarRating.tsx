@@ -8,7 +8,7 @@ interface StarRatingProps {
 }
 
 export function StarRating({ rating, count = 0, showCount = true, size = 'md' }: StarRatingProps) {
-  if (!rating) return <span className="text-[#2C1810]/40 text-sm">No rating</span>
+  if (!rating) return <span className="text-[#262626]/40 text-sm">No rating</span>
 
   const sizes = { sm: 'w-3.5 h-3.5', md: 'w-4 h-4', lg: 'w-5 h-5' }
   const textSizes = { sm: 'text-xs', md: 'text-sm', lg: 'text-base' }
@@ -24,13 +24,13 @@ export function StarRating({ rating, count = 0, showCount = true, size = 'md' }:
         {[...Array(5)].map((_, i) => (
           <Star
             key={i}
-            className={`${starSize} ${i < fullStars ? 'fill-[#D4AF37] text-[#D4AF37]' : i === fullStars && hasHalf ? 'fill-[#D4AF37]/50 text-[#D4AF37]' : 'fill-[#D4AF37]/20 text-[#D4AF37]/20'}`}
+            className={`${starSize} ${i < fullStars ? 'fill-[#FCAF45] text-[#FCAF45]' : i === fullStars && hasHalf ? 'fill-[#FCAF45]/50 text-[#FCAF45]' : 'fill-[#FCAF45]/20 text-[#FCAF45]/20'}`}
           />
         ))}
       </div>
-      <span className={`font-semibold ${textSize} text-[#2C1810]`}>{rating.toFixed(1)}</span>
+      <span className={`font-semibold ${textSize} text-[#262626]`}>{rating.toFixed(1)}</span>
       {showCount && count > 0 && (
-        <span className={`text-[#2C1810]/40 ${textSize}`}>({count.toLocaleString()})</span>
+        <span className={`text-[#262626]/40 ${textSize}`}>({count.toLocaleString()})</span>
       )}
     </div>
   )

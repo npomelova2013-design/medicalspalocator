@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Search } from 'lucide-react'
-import { GoldParticles } from '@/components/shared/GoldParticles'
+import { InstaParticles } from '@/components/shared/InstaParticles'
 
 export function Hero() {
   const [query, setQuery] = useState('')
@@ -40,8 +40,8 @@ export function Hero() {
       <div className="gradient-orb gradient-orb-champagne absolute -bottom-32 -left-32 h-[450px] w-[450px] animate-float-delayed" />
       <div className="gradient-orb gradient-orb-mauve absolute top-1/3 left-1/2 h-[350px] w-[350px] -translate-x-1/2 animate-float-slow" />
 
-      {/* Gold particles */}
-      <GoldParticles />
+      {/* Instagram particles */}
+      <InstaParticles />
 
       {/* Content */}
       <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 py-32 md:py-40">
@@ -62,8 +62,8 @@ export function Hero() {
 
         {/* Search bar — warm glassmorphism */}
         <form onSubmit={handleSearch} className="mx-auto max-w-2xl">
-          <div className="relative flex items-center rounded-2xl bg-white/10 backdrop-blur-xl border border-[#D4AF37]/20 shadow-2xl">
-            <Search className="pointer-events-none absolute left-5 h-5 w-5 text-[#D4AF37]/60" />
+          <div className="relative flex items-center rounded-2xl bg-white/10 backdrop-blur-xl border border-[#833AB4]/20 shadow-2xl">
+            <Search className="pointer-events-none absolute left-5 h-5 w-5 text-[#833AB4]/60" />
             <input
               type="text"
               value={query}
@@ -73,7 +73,7 @@ export function Hero() {
             />
             <button
               type="submit"
-              className="absolute right-3 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#B76E79] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#D4AF37]/20 transition hover:shadow-xl hover:shadow-[#D4AF37]/30"
+              className="absolute right-3 rounded-xl bg-gradient-to-r from-[#833AB4] to-[#E1306C] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#833AB4]/20 transition hover:shadow-xl hover:shadow-[#833AB4]/30"
             >
               Search
             </button>
@@ -89,7 +89,7 @@ export function Hero() {
                 onClick={() =>
                   router.push(`/search?q=${encodeURIComponent(t)}`)
                 }
-                className="rounded-full bg-white/10 backdrop-blur-md border border-[#D4AF37]/20 px-5 py-2 text-sm font-medium text-white/90 transition hover:bg-[#D4AF37]/15 hover:border-[#D4AF37]/40"
+                className="rounded-full bg-white/10 backdrop-blur-md border border-[#833AB4]/20 px-5 py-2 text-sm font-medium text-white/90 transition hover:bg-[#833AB4]/15 hover:border-[#833AB4]/40"
               >
                 {t}
               </button>
@@ -99,11 +99,11 @@ export function Hero() {
 
         {/* Trust line */}
         <div className="mt-14 flex items-center justify-center gap-3">
-          <span className="h-px w-12 bg-[#D4AF37]/30" />
-          <span className="text-sm tracking-wide text-[#D4AF37]/50">
+          <span className="h-px w-12 bg-[#833AB4]/30" />
+          <span className="text-sm tracking-wide text-[#833AB4]/50">
             Trusted by 286+ med spas across Illinois
           </span>
-          <span className="h-px w-12 bg-[#D4AF37]/30" />
+          <span className="h-px w-12 bg-[#833AB4]/30" />
         </div>
       </div>
     </section>

@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic'
 const statusConfig: Record<string, { label: string; className: string }> = {
   new: {
     label: 'New',
-    className: 'bg-[#D4AF37]/15 text-[#B76E79]',
+    className: 'bg-[#833AB4]/15 text-[#E1306C]',
   },
   contacted: {
     label: 'Contacted',

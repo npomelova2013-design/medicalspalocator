@@ -5,10 +5,10 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || 'https://medicalspalocator.com'
 
 export const COLORS = {
-  primary: '#D4AF37', // champagne gold
-  primaryDark: '#B76E79', // rose gold
-  gold: '#D4AF37', // champagne gold (premium)
-  goldLight: '#F5E6E0', // warm blush
+  primary: '#833AB4', // Instagram purple
+  primaryDark: '#E1306C', // Instagram hot pink
+  gold: '#833AB4', // Instagram purple (premium)
+  goldLight: '#F0E6F6', // light lavender
 } as const
 
 export const LISTING_TIERS = {

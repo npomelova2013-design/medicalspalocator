@@ -9,9 +9,9 @@ export function PremiumBadge({ tier, size = 'md' }: PremiumBadgeProps) {
   if (tier === 'free') return null
 
   const config: Record<string, { label: string; className: string }> = {
-    premium: { label: 'Featured', className: 'bg-gradient-to-r from-[#D4AF37]/15 to-[#D4AF37]/5 text-[#D4AF37] border-[#D4AF37]/30' },
-    enterprise: { label: 'Enterprise', className: 'bg-gradient-to-r from-[#B76E79]/15 to-[#5C1A33]/10 text-[#B76E79] border-[#B76E79]/30' },
-    claimed: { label: 'Claimed', className: 'bg-gradient-to-r from-[#F5E6E0] to-[#F5E6E0]/50 text-[#B76E79] border-[#B76E79]/20' },
+    premium: { label: 'Featured', className: 'bg-gradient-to-r from-[#833AB4]/15 to-[#833AB4]/5 text-[#833AB4] border-[#833AB4]/30' },
+    enterprise: { label: 'Enterprise', className: 'bg-gradient-to-r from-[#E1306C]/15 to-[#1a1a2e]/10 text-[#E1306C] border-[#E1306C]/30' },
+    claimed: { label: 'Claimed', className: 'bg-gradient-to-r from-[#F0E6F6] to-[#F0E6F6]/50 text-[#E1306C] border-[#E1306C]/20' },
   }
 
   const { label, className } = config[tier] || config.claimed

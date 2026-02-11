@@ -19,7 +19,7 @@ export function PremiumMedSpaCard({ spa }: Props) {
   return (
     <div className="relative rounded-2xl overflow-hidden hover-lift">
       {/* Gradient border wrapper — champagne-to-rose-gold */}
-      <div className="bg-gradient-to-br from-[#D4AF37] via-[#B76E79] to-[#D4AF37] p-[2px] rounded-2xl">
+      <div className="bg-gradient-to-br from-[#833AB4] via-[#E1306C] to-[#833AB4] p-[2px] rounded-2xl">
         {/* Shimmer accent bar */}
         <div className="shimmer absolute top-0 left-0 right-0 h-1 z-10" />
 
@@ -32,7 +32,7 @@ export function PremiumMedSpaCard({ spa }: Props) {
                 {spa.is_verified && <VerifiedBadge />}
               </div>
               <Link href={`/med-spa/${spa.url_slug}`} className="group">
-                <h3 className="text-xl font-bold text-[#2C1810] group-hover:text-[#B76E79] transition truncate">
+                <h3 className="text-xl font-bold text-[#262626] group-hover:text-[#E1306C] transition truncate">
                   {spa.business_name}
                 </h3>
               </Link>
@@ -48,8 +48,8 @@ export function PremiumMedSpaCard({ spa }: Props) {
                 />
               </div>
             ) : (
-              <div className="w-20 h-20 rounded-xl shadow-md overflow-hidden ml-4 flex-shrink-0 bg-gradient-to-br from-[#F5E6E0] via-[#FFF8F0] to-[#5C1A33]/10 flex items-center justify-center">
-                <span className="text-3xl font-serif italic text-[#D4AF37]/25 select-none">
+              <div className="w-20 h-20 rounded-xl shadow-md overflow-hidden ml-4 flex-shrink-0 bg-gradient-to-br from-[#F0E6F6] via-[#FAFAFA] to-[#1a1a2e]/10 flex items-center justify-center">
+                <span className="text-3xl font-serif italic text-[#833AB4]/25 select-none">
                   {spa.business_name.charAt(0)}
                 </span>
               </div>
@@ -58,15 +58,15 @@ export function PremiumMedSpaCard({ spa }: Props) {
 
           <StarRating rating={spa.google_rating} count={spa.google_reviews_count} size="md" />
 
-          <div className="flex items-center gap-1.5 text-[#2C1810]/50 text-sm mt-2">
-            <MapPin className="w-4 h-4 text-[#D4AF37] flex-shrink-0" />
+          <div className="flex items-center gap-1.5 text-[#262626]/50 text-sm mt-2">
+            <MapPin className="w-4 h-4 text-[#833AB4] flex-shrink-0" />
             <span>{spa.address ? `${spa.address}, ` : ''}{spa.city}, {spa.state} {spa.zip_code}</span>
           </div>
 
           {spa.special_offer && (
-            <div className="mt-4 bg-gradient-to-r from-[#D4AF37]/10 to-[#B76E79]/10 border border-[#D4AF37]/20 rounded-xl p-3 flex items-start gap-2">
-              <Sparkles className="w-4 h-4 text-[#D4AF37] flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-[#5C1A33] font-medium">{spa.special_offer}</p>
+            <div className="mt-4 bg-gradient-to-r from-[#833AB4]/10 to-[#E1306C]/10 border border-[#833AB4]/20 rounded-xl p-3 flex items-start gap-2">
+              <Sparkles className="w-4 h-4 text-[#833AB4] flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-[#1a1a2e] font-medium">{spa.special_offer}</p>
             </div>
           )}
 
@@ -78,11 +78,11 @@ export function PremiumMedSpaCard({ spa }: Props) {
             </div>
           )}
 
-          <div className="flex items-center justify-between border-t border-[#D4AF37]/15 mt-5 pt-4">
+          <div className="flex items-center justify-between border-t border-[#833AB4]/15 mt-5 pt-4">
             <ClickToCall phone={spa.phone} medSpaId={spa.id} variant="button" />
             <Link
               href={`/med-spa/${spa.url_slug}`}
-              className="text-sm font-semibold text-[#B76E79] hover:text-[#D4AF37] transition"
+              className="text-sm font-semibold text-[#E1306C] hover:text-[#833AB4] transition"
             >
               View Full Profile &rarr;
             </Link>

@@ -54,7 +54,7 @@ function AnimatedCounter({ target, suffix = '+' }: { target: number; suffix?: st
 
 export function StatsBar({ totalSpas, totalCities }: Props) {
   return (
-    <div className="relative bg-[#5C1A33] py-20 md:py-28 overflow-hidden">
+    <div className="relative bg-[#1a1a2e] py-20 md:py-28 overflow-hidden">
       {/* Background orbs */}
       <div className="gradient-orb gradient-orb-rose-gold absolute -top-32 -left-32 h-[400px] w-[400px] animate-float opacity-30" />
       <div className="gradient-orb gradient-orb-champagne absolute -bottom-24 -right-24 h-[350px] w-[350px] animate-float-delayed opacity-25" />
@@ -64,31 +64,31 @@ export function StatsBar({ totalSpas, totalCities }: Props) {
           {/* Stat: Med Spas */}
           <div className="flex flex-col items-center text-center">
             <AnimatedCounter target={totalSpas} />
-            <span className="text-sm uppercase tracking-[0.2em] text-[#D4AF37]/60 mt-3">
+            <span className="text-sm uppercase tracking-[0.2em] text-[#833AB4]/60 mt-3">
               Med Spas
             </span>
           </div>
 
           {/* Separator */}
-          <div className="hidden sm:block h-16 w-px bg-[#D4AF37]/20" />
+          <div className="hidden sm:block h-16 w-px bg-[#833AB4]/20" />
 
           {/* Stat: Cities Covered */}
           <div className="flex flex-col items-center text-center">
             <AnimatedCounter target={totalCities} />
-            <span className="text-sm uppercase tracking-[0.2em] text-[#D4AF37]/60 mt-3">
+            <span className="text-sm uppercase tracking-[0.2em] text-[#833AB4]/60 mt-3">
               Cities Covered
             </span>
           </div>
 
           {/* Separator */}
-          <div className="hidden sm:block h-16 w-px bg-[#D4AF37]/20" />
+          <div className="hidden sm:block h-16 w-px bg-[#833AB4]/20" />
 
           {/* Stat: Average Rating */}
           <div className="flex flex-col items-center text-center">
             <span className="text-6xl md:text-7xl font-serif italic font-bold tracking-editorial instagram-gradient-text">
               4.7
             </span>
-            <span className="text-sm uppercase tracking-[0.2em] text-[#D4AF37]/60 mt-3">
+            <span className="text-sm uppercase tracking-[0.2em] text-[#833AB4]/60 mt-3">
               Average Rating
             </span>
           </div>
