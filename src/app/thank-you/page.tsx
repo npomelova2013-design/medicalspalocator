@@ -13,7 +13,7 @@ export default async function ThankYouPage({ searchParams }: Props) {
   const isClaim = type === 'claim'
 
   return (
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-16 pt-28 text-center">
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-16 pt-24 text-center">
       <CheckCircle2 className="w-16 h-16 text-[#E1306C] mx-auto mb-6" />
       <h1 className="text-3xl font-bold text-[#262626] mb-4">
         {isClaim ? 'Claim Request Submitted!' : 'Thanks for Your Request!'}

@@ -70,7 +70,7 @@ export function Header() {
               <span className={`font-serif text-xl tracking-tight transition-colors duration-300 ${
                 isDarkText
                   ? 'bg-gradient-to-r from-[#833AB4] to-[#E1306C] bg-clip-text text-transparent'
-                  : 'text-[#833AB4]/80'
+                  : 'text-white/90'
               }`}>
                 Locator
               </span>
@@ -96,7 +96,7 @@ export function Header() {
                   className={`w-full pl-11 pr-4 py-2.5 rounded-full text-sm transition-all duration-300 focus:outline-none ${
                     isDarkText
                       ? 'bg-[#F0E6F6]/50 text-[#262626] placeholder:text-[#262626]/40 border border-[#833AB4]/15 focus:border-[#833AB4]/30 focus:bg-white focus:shadow-[0_0_0_3px_rgba(131,58,180,0.08)]'
-                      : 'bg-white/10 backdrop-blur-md text-white placeholder:text-white/50 border border-[#833AB4]/20 focus:border-[#833AB4]/40 focus:bg-white/15'
+                      : 'bg-white/15 backdrop-blur-md text-white placeholder:text-white/60 border border-white/20 focus:border-[#833AB4]/40 focus:bg-white/20'
                   }`}
                 />
               </div>
@@ -158,7 +158,7 @@ export function Header() {
 
       {/* Mobile menu overlay */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-500 ease-out ${
+        className={`fixed inset-0 z-[55] md:hidden transition-all duration-500 ease-out ${
           mobileOpen
             ? 'opacity-100 pointer-events-auto'
             : 'opacity-0 pointer-events-none'

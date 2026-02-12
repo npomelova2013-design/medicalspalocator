@@ -87,7 +87,7 @@ export default async function ListingPage({ params }: Props) {
         </div>
       )}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+      <div className={`max-w-7xl mx-auto px-4 sm:px-6 py-12 ${!isPremium ? 'pt-24' : ''}`}>
         {/* Breadcrumb — only for non-premium */}
         {!isPremium && (
           <nav className="text-sm text-[#262626]/40 mb-8">

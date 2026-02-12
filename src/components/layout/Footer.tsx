@@ -27,7 +27,7 @@ export function Footer() {
               <h3 className="font-serif italic text-2xl text-white font-semibold tracking-editorial">
                 Own a Med Spa?
               </h3>
-              <p className="text-[#833AB4]/60 mt-1 max-w-md">
+              <p className="text-white/60 mt-1 max-w-md">
                 Join Illinois&apos; fastest-growing med spa directory and connect with thousands of potential clients.
               </p>
             </div>
@@ -50,14 +50,14 @@ export function Footer() {
               <span className="font-serif text-xl text-white">Medical Spa</span>
               <span className="font-serif text-xl ml-1.5 bg-gradient-to-r from-[#833AB4] to-[#E1306C] bg-clip-text text-transparent">Locator</span>
             </div>
-            <p className="text-sm text-[#833AB4]/40 leading-relaxed">
+            <p className="text-sm text-[#833AB4]/60 leading-relaxed">
               Illinois&apos; largest med spa directory. Compare ratings, read reviews, and find the best medical spas near you.
             </p>
           </div>
 
           {/* Cities */}
           <div>
-            <h4 className="text-xs uppercase tracking-[0.2em] text-[#833AB4]/40 font-medium mb-4">
+            <h4 className="text-xs uppercase tracking-[0.2em] text-[#833AB4]/50 font-medium mb-4">
               Popular Cities
             </h4>
             <ul className="space-y-2">
@@ -65,7 +65,7 @@ export function Footer() {
                 <li key={city}>
                   <Link
                     href={`/city/${slugifyCity(city)}`}
-                    className="text-sm text-[#833AB4]/50 hover:text-[#833AB4] transition"
+                    className="text-sm text-[#833AB4]/70 hover:text-[#833AB4] transition"
                   >
                     {city}
                   </Link>
@@ -76,7 +76,7 @@ export function Footer() {
 
           {/* Treatments */}
           <div>
-            <h4 className="text-xs uppercase tracking-[0.2em] text-[#833AB4]/40 font-medium mb-4">
+            <h4 className="text-xs uppercase tracking-[0.2em] text-[#833AB4]/50 font-medium mb-4">
               Treatments
             </h4>
             <ul className="space-y-2">
@@ -84,7 +84,7 @@ export function Footer() {
                 <li key={t}>
                   <Link
                     href={`/search?q=${encodeURIComponent(t)}`}
-                    className="text-sm text-[#833AB4]/50 hover:text-[#833AB4] transition"
+                    className="text-sm text-[#833AB4]/70 hover:text-[#833AB4] transition"
                   >
                     {t}
                   </Link>
@@ -95,22 +95,22 @@ export function Footer() {
 
           {/* For Med Spas */}
           <div>
-            <h4 className="text-xs uppercase tracking-[0.2em] text-[#833AB4]/40 font-medium mb-4">
+            <h4 className="text-xs uppercase tracking-[0.2em] text-[#833AB4]/50 font-medium mb-4">
               For Med Spas
             </h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/claim/info" className="text-sm text-[#833AB4]/50 hover:text-[#833AB4] transition">
+                <Link href="/claim/info" className="text-sm text-[#833AB4]/70 hover:text-[#833AB4] transition">
                   Claim Your Listing
                 </Link>
               </li>
               <li>
-                <Link href="/claim/info" className="text-sm text-[#833AB4]/50 hover:text-[#833AB4] transition">
+                <Link href="/claim/info" className="text-sm text-[#833AB4]/70 hover:text-[#833AB4] transition">
                   Premium Listings
                 </Link>
               </li>
               <li>
-                <Link href="/claim/info" className="text-sm text-[#833AB4]/50 hover:text-[#833AB4] transition">
+                <Link href="/claim/info" className="text-sm text-[#833AB4]/70 hover:text-[#833AB4] transition">
                   Advertising
                 </Link>
               </li>
@@ -122,7 +122,7 @@ export function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-[#833AB4]/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-8 pt-6">
-          <p className="text-center text-sm text-[#833AB4]/30">
+          <p className="text-center text-sm text-[#833AB4]/50">
             &copy; {new Date().getFullYear()} Medical Spa Locator. All rights reserved.
           </p>
         </div>

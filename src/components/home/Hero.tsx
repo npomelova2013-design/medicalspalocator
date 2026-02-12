@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { Search, Play, MapPin, Star, Shield } from 'lucide-react'
 import { InstaParticles } from '@/components/shared/InstaParticles'
 
@@ -124,11 +125,13 @@ export function Hero() {
             <div className="relative">
               {/* Main featured card */}
               <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/30 aspect-[4/3]">
-                <img
+                <Image
                   src={CARD_IMAGES[0]}
                   alt="Premium med spa treatment"
-                  className="w-full h-full object-cover"
-                  loading="eager"
+                  fill
+                  sizes="(max-width: 1024px) 0px, 40vw"
+                  className="object-cover"
+                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-5">
@@ -153,11 +156,12 @@ export function Hero() {
               {/* Two smaller image thumbnails */}
               <div className="grid grid-cols-2 gap-3 mt-3">
                 <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-lg aspect-video group cursor-pointer">
-                  <img
+                  <Image
                     src={CARD_IMAGES[1]}
                     alt="Laser treatment procedure"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="eager"
+                    fill
+                    sizes="(max-width: 1024px) 0px, 20vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -170,11 +174,12 @@ export function Hero() {
                   </div>
                 </div>
                 <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-lg aspect-video group cursor-pointer">
-                  <img
+                  <Image
                     src={CARD_IMAGES[2]}
                     alt="Facial rejuvenation treatment"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="eager"
+                    fill
+                    sizes="(max-width: 1024px) 0px, 20vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
                   <div className="absolute inset-0 flex items-center justify-center">

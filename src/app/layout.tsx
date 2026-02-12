@@ -4,12 +4,13 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import './globals.css'
 
-const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-sans' })
+const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-sans', display: 'swap' })
 const playfairDisplay = Playfair_Display({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   style: ['normal', 'italic'],
   variable: '--font-serif',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
