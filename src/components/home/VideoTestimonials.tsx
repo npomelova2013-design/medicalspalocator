@@ -10,7 +10,7 @@ const TESTIMONIALS = [
     city: 'Chicago, IL',
     rating: 5,
     treatment: 'Botox & Fillers',
-    videoSrc: 'https://videos.pexels.com/video-files/7581709/7581709-hd_1920_1080_24fps.mp4',
+    videoSrc: 'https://videos.pexels.com/video-files/7581709/7581709-uhd_2732_1440_25fps.mp4',
     poster: '/images/beauty-closeup.png',
   },
   {
@@ -19,7 +19,7 @@ const TESTIMONIALS = [
     city: 'Naperville, IL',
     rating: 5,
     treatment: 'Laser Treatment',
-    videoSrc: 'https://videos.pexels.com/video-files/7581719/7581719-hd_1920_1080_24fps.mp4',
+    videoSrc: 'https://videos.pexels.com/video-files/7010919/7010919-hd_1920_1080_25fps.mp4',
     poster: '/images/beauty-braids.png',
   },
   {
@@ -28,7 +28,7 @@ const TESTIMONIALS = [
     city: 'Evanston, IL',
     rating: 5,
     treatment: 'HydraFacial',
-    videoSrc: 'https://videos.pexels.com/video-files/8131881/8131881-hd_1920_1080_24fps.mp4',
+    videoSrc: 'https://videos.pexels.com/video-files/3763029/3763029-hd_1920_1080_25fps.mp4',
     poster: '/images/hero-portrait.png',
   },
 ]

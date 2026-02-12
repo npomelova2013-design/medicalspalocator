@@ -7,7 +7,7 @@ import { Search, MapPin, Star, Shield } from 'lucide-react'
 import { InstaParticles } from '@/components/shared/InstaParticles'
 
 // HD cinematic video: stream from Pexels CDN, local fallback
-const HERO_VIDEO_HD = 'https://videos.pexels.com/video-files/5069465/5069465-hd_1920_1080_24fps.mp4'
+const HERO_VIDEO_HD = 'https://videos.pexels.com/video-files/5524244/5524244-hd_1920_1080_30fps.mp4'
 const HERO_VIDEO_LOCAL = '/videos/hero-bg.mp4'
 
 // Local luxury images for the showcase cards (fast loading from public/)

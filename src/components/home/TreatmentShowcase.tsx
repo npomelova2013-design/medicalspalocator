@@ -108,7 +108,7 @@ export function TreatmentShowcase() {
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source
-          src="https://videos.pexels.com/video-files/5069465/5069465-sd_640_360_24fps.mp4"
+          src="https://videos.pexels.com/video-files/5524244/5524244-sd_640_360_30fps.mp4"
           type="video/mp4"
         />
       </video>
