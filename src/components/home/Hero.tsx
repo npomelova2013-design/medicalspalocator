@@ -6,12 +6,12 @@ import Image from 'next/image'
 import { Search, Play, MapPin, Star, Shield } from 'lucide-react'
 import { InstaParticles } from '@/components/shared/InstaParticles'
 
-const HERO_VIDEO = 'https://videos.pexels.com/video-files/5069465/5069465-uhd_2560_1440_24fps.mp4'
+const HERO_VIDEO = '/videos/hero-bg.mp4'
 
 // Local luxury images for the showcase cards (fast loading from public/)
 const CARD_IMAGES = [
   '/images/hero-portrait.png',
-  '/images/treatment-collage.png',
+  '/images/spa-professional.png',
   '/images/beauty-closeup.png',
 ]
 
@@ -41,7 +41,7 @@ export function Hero({ totalSpas, totalCities, avgRating }: HeroProps) {
         loop
         playsInline
         preload="auto"
-        poster="/images/spa-professional.png"
+        poster="/images/hero-portrait.png"
         className="absolute inset-0 w-full h-full object-cover scale-105"
       >
         <source src={HERO_VIDEO} type="video/mp4" />
