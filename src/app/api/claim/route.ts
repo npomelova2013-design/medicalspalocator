@@ -1,13 +1,38 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const PHONE_RE = /^\+?[\d\s\-().]{10,15}$/
+
+function sanitize(val: unknown, maxLen: number = 500): string | null {
+  if (typeof val !== 'string') return null
+  const trimmed = val.trim()
+  return trimmed.length > 0 ? trimmed.slice(0, maxLen) : null
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
     const { medSpaId, name, email, phone, role, howHeard, message } = body
 
-    if (!name || !email || !phone) {
+    // Required fields
+    const nameClean = sanitize(name, 100)
+    const emailClean = sanitize(email, 254)
+    const phoneClean = sanitize(phone, 20)
+
+    if (!nameClean || !emailClean || !phoneClean) {
       return NextResponse.json({ error: 'Name, email, and phone are required' }, { status: 400 })
+    }
+
+    // Email validation
+    if (!EMAIL_RE.test(emailClean)) {
+      return NextResponse.json({ error: 'Please enter a valid email address' }, { status: 400 })
+    }
+
+    // Phone validation: 10-15 digits
+    const digitsOnly = phoneClean.replace(/\D/g, '')
+    if (digitsOnly.length < 10 || digitsOnly.length > 15 || !PHONE_RE.test(phoneClean)) {
+      return NextResponse.json({ error: 'Please enter a valid phone number (10-15 digits)' }, { status: 400 })
     }
 
     const supabase = createAdminClient()
@@ -15,13 +40,13 @@ export async function POST(request: NextRequest) {
     const { error } = await supabase
       .from('consumer_leads')
       .insert({
-        first_name: name,
-        phone,
-        email,
-        service_interest: `Claim Request - ${role || 'owner'}`,
-        notes: `How heard: ${howHeard || 'unknown'}. ${message || ''}`.trim(),
+        first_name: nameClean,
+        phone: phoneClean,
+        email: emailClean,
+        service_interest: `Claim Request - ${sanitize(role, 50) || 'owner'}`,
+        notes: `How heard: ${sanitize(howHeard, 100) || 'unknown'}. ${sanitize(message, 500) || ''}`.trim(),
         source: 'claim_form',
-        routed_to: medSpaId || null,
+        routed_to: sanitize(medSpaId, 100),
         status: 'new',
       })
 
@@ -31,7 +56,8 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json({ success: true })
-  } catch {
+  } catch (err) {
+    console.error('Claim API error:', err instanceof Error ? err.message : err)
     return NextResponse.json({ error: 'Invalid request' }, { status: 400 })
   }
 }

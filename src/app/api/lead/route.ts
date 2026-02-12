@@ -1,14 +1,39 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const PHONE_RE = /^\+?[\d\s\-().]{10,15}$/
+
+function sanitize(val: unknown, maxLen: number = 500): string | null {
+  if (typeof val !== 'string') return null
+  const trimmed = val.trim()
+  return trimmed.length > 0 ? trimmed.slice(0, maxLen) : null
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
 
     const { first_name, last_name, phone, email, service_interest, preferred_city, timeline, notes, source, landing_page, routed_to } = body
 
-    if (!first_name || !phone) {
+    // Required fields
+    const name = sanitize(first_name, 100)
+    const phoneClean = sanitize(phone, 20)
+
+    if (!name || !phoneClean) {
       return NextResponse.json({ error: 'Name and phone are required' }, { status: 400 })
+    }
+
+    // Phone validation: 10-15 digits
+    const digitsOnly = phoneClean.replace(/\D/g, '')
+    if (digitsOnly.length < 10 || digitsOnly.length > 15 || !PHONE_RE.test(phoneClean)) {
+      return NextResponse.json({ error: 'Please enter a valid phone number (10-15 digits)' }, { status: 400 })
+    }
+
+    // Optional email validation
+    const emailClean = sanitize(email, 254)
+    if (emailClean && !EMAIL_RE.test(emailClean)) {
+      return NextResponse.json({ error: 'Please enter a valid email address' }, { status: 400 })
     }
 
     const supabase = createAdminClient()
@@ -16,17 +41,17 @@ export async function POST(request: NextRequest) {
     const { data, error } = await supabase
       .from('consumer_leads')
       .insert({
-        first_name,
-        last_name: last_name || null,
-        phone,
-        email: email || null,
-        service_interest: service_interest || null,
-        preferred_city: preferred_city || null,
-        timeline: timeline || null,
-        notes: notes || null,
-        source: source || 'website_form',
-        landing_page: landing_page || null,
-        routed_to: routed_to || null,
+        first_name: name,
+        last_name: sanitize(last_name, 100),
+        phone: phoneClean,
+        email: emailClean,
+        service_interest: sanitize(service_interest, 200),
+        preferred_city: sanitize(preferred_city, 100),
+        timeline: sanitize(timeline, 100),
+        notes: sanitize(notes, 500),
+        source: sanitize(source, 50) || 'website_form',
+        landing_page: sanitize(landing_page, 500),
+        routed_to: sanitize(routed_to, 100),
         status: 'new',
       })
       .select('id')
@@ -40,13 +65,14 @@ export async function POST(request: NextRequest) {
     // Track the event
     await supabase.from('analytics_events').insert({
       event_type: 'lead_form_submit',
-      med_spa_id: routed_to || null,
+      med_spa_id: sanitize(routed_to, 100),
       lead_id: data?.id || null,
-      page_path: landing_page || '/',
+      page_path: sanitize(landing_page, 500) || '/',
     })
 
     return NextResponse.json({ success: true, id: data?.id })
-  } catch {
+  } catch (err) {
+    console.error('Lead API error:', err instanceof Error ? err.message : err)
     return NextResponse.json({ error: 'Invalid request' }, { status: 400 })
   }
 }

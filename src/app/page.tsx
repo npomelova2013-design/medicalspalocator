@@ -20,10 +20,16 @@ export default async function HomePage() {
 
   const totalCities = cities.length
 
+  // Weighted average rating across all cities
+  const totalReviews = cities.reduce((sum, c) => sum + (c.total_spas || 0), 0)
+  const avgRating = totalReviews > 0
+    ? cities.reduce((sum, c) => sum + (c.avg_rating || 0) * (c.total_spas || 0), 0) / totalReviews
+    : 4.5
+
   return (
     <>
       <Hero />
-      <StatsBar totalSpas={totalSpas} totalCities={totalCities} />
+      <StatsBar totalSpas={totalSpas} totalCities={totalCities} avgRating={avgRating} />
       <TrustLogosBar />
       <CityGrid cities={cities} />
       <FeaturedSpas spas={featured} />

@@ -7,6 +7,7 @@ import { Search } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'Search Med Spas',
   description: 'Search for medical spas in Illinois by name, city, or treatment.',
+  alternates: { canonical: '/search' },
 }
 
 interface Props {
@@ -27,7 +28,7 @@ export default async function SearchPage({ searchParams }: Props) {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 pt-24">
       <nav className="text-sm text-[#262626]/50 mb-4">
         <Link href="/" className="hover:text-[#E1306C]">Home</Link>
         <span className="mx-2">/</span>

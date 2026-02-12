@@ -7,7 +7,10 @@ export async function getCitySummaries(): Promise<CitySummary[]> {
     .from('city_summary')
     .select('*')
     .order('total_spas', { ascending: false })
-  if (error) return []
+  if (error) {
+    console.error('getCitySummaries() error:', error.message)
+    return []
+  }
   return data as CitySummary[]
 }
 
@@ -18,6 +21,9 @@ export async function getCitySummary(city: string): Promise<CitySummary | null> 
     .select('*')
     .ilike('city', city)
     .single()
-  if (error || !data) return null
+  if (error || !data) {
+    if (error) console.error('getCitySummary() error:', error.message)
+    return null
+  }
   return data as CitySummary
 }

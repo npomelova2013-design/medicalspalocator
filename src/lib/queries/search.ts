@@ -29,6 +29,10 @@ export async function searchMedSpas(
     .order('google_rating', { ascending: false, nullsFirst: false })
     .range(offset, offset + limit - 1)
 
+  if (error) {
+    console.error('searchMedSpas() FTS error:', error.message)
+  }
+
   // If FTS returns results, use them
   if (!error && data && data.length > 0) {
     return { data: data as MedSpaCard[], count: count || 0 }

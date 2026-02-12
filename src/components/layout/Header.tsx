@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useState, useEffect, useCallback } from 'react'
 import { Search, ArrowRight } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -11,6 +11,10 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [searchFocused, setSearchFocused] = useState(false)
   const router = useRouter()
+  const pathname = usePathname()
+
+  // On homepage, header starts transparent/white text; on all other pages, always dark text
+  const isDarkText = scrolled || pathname !== '/'
 
   const handleScroll = useCallback(() => {
     setScrolled(window.scrollY > 100)
@@ -49,7 +53,7 @@ export function Header() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
+          isDarkText
             ? 'bg-[#FAFAFA]/95 backdrop-blur-lg border-b border-[#833AB4]/10 shadow-[0_1px_3px_rgba(44,24,16,0.06)]'
             : 'bg-transparent border-b border-transparent'
         }`}
@@ -59,12 +63,12 @@ export function Header() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-1 group shrink-0">
               <span className={`font-serif text-xl tracking-tight transition-colors duration-300 ${
-                scrolled ? 'text-[#262626]' : 'text-white'
+                isDarkText ? 'text-[#262626]' : 'text-white'
               }`}>
                 Medical Spa
               </span>
               <span className={`font-serif text-xl tracking-tight transition-colors duration-300 ${
-                scrolled
+                isDarkText
                   ? 'bg-gradient-to-r from-[#833AB4] to-[#E1306C] bg-clip-text text-transparent'
                   : 'text-[#833AB4]/80'
               }`}>
@@ -79,7 +83,7 @@ export function Header() {
                   className={`absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors duration-200 ${
                     searchFocused
                       ? 'text-[#833AB4]'
-                      : scrolled ? 'text-[#262626]/40' : 'text-white/50'
+                      : isDarkText ? 'text-[#262626]/40' : 'text-white/50'
                   }`}
                 />
                 <input
@@ -90,8 +94,8 @@ export function Header() {
                   onBlur={() => setSearchFocused(false)}
                   placeholder="Search by city, treatment, or spa name..."
                   className={`w-full pl-11 pr-4 py-2.5 rounded-full text-sm transition-all duration-300 focus:outline-none ${
-                    scrolled
-                      ? 'bg-[#F0E6F6]/50 text-[#262626] placeholder:text-[#262626]/40 border border-transparent focus:border-[#833AB4]/30 focus:bg-white focus:shadow-[0_0_0_3px_rgba(212,175,55,0.08)]'
+                    isDarkText
+                      ? 'bg-[#F0E6F6]/50 text-[#262626] placeholder:text-[#262626]/40 border border-[#833AB4]/15 focus:border-[#833AB4]/30 focus:bg-white focus:shadow-[0_0_0_3px_rgba(131,58,180,0.08)]'
                       : 'bg-white/10 backdrop-blur-md text-white placeholder:text-white/50 border border-[#833AB4]/20 focus:border-[#833AB4]/40 focus:bg-white/15'
                   }`}
                 />
@@ -103,18 +107,16 @@ export function Header() {
               <Link
                 href="/search"
                 className={`relative text-[13px] font-medium tracking-wide uppercase transition-colors duration-300 group py-1 ${
-                  scrolled ? 'text-[#262626]/80 hover:text-[#262626]' : 'text-white/90 hover:text-white'
+                  isDarkText ? 'text-[#262626]/80 hover:text-[#262626]' : 'text-white/90 hover:text-white'
                 }`}
               >
                 Browse
-                <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1.5px] transition-all duration-300 group-hover:w-full ${
-                  scrolled ? 'bg-[#833AB4]' : 'bg-[#833AB4]'
-                }`} />
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1.5px] transition-all duration-300 group-hover:w-full bg-[#833AB4]" />
               </Link>
               <Link
                 href="/claim/info"
                 className={`inline-flex items-center gap-1.5 text-[13px] font-medium tracking-wide px-5 py-2.5 rounded-full transition-all duration-300 shadow-sm ${
-                  scrolled
+                  isDarkText
                     ? 'text-white bg-gradient-to-r from-[#833AB4] to-[#E1306C] hover:shadow-md hover:shadow-[#833AB4]/20'
                     : 'text-white bg-white/15 backdrop-blur-md border border-[#833AB4]/25 hover:bg-white/25'
                 }`}
@@ -128,7 +130,7 @@ export function Header() {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className={`md:hidden relative z-50 p-2 -mr-2 transition-colors duration-300 ${
-                mobileOpen || scrolled ? 'text-[#262626] hover:text-[#E1306C]' : 'text-white hover:text-[#833AB4]'
+                mobileOpen || isDarkText ? 'text-[#262626] hover:text-[#E1306C]' : 'text-white hover:text-[#833AB4]'
               }`}
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             >
@@ -186,7 +188,7 @@ export function Header() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search treatments, cities..."
-                className="w-full pl-11 pr-4 py-3.5 bg-white rounded-full text-sm text-[#262626] placeholder:text-[#262626]/40 border border-[#833AB4]/20 focus:border-[#833AB4]/40 focus:shadow-[0_0_0_3px_rgba(212,175,55,0.08)] focus:outline-none transition-all duration-200"
+                className="w-full pl-11 pr-4 py-3.5 bg-white rounded-full text-sm text-[#262626] placeholder:text-[#262626]/40 border border-[#833AB4]/20 focus:border-[#833AB4]/40 focus:shadow-[0_0_0_3px_rgba(131,58,180,0.08)] focus:outline-none transition-all duration-200"
               />
             </div>
           </form>

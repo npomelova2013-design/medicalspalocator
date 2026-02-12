@@ -9,6 +9,9 @@ function cleanTreatmentName(name: string): string {
     .trim()
 }
 
+/** Known category prefixes that get concatenated with treatment names during scraping */
+const CATEGORY_PREFIXES = /^(BODY|FACE|SKIN|LASER|INJECTABLE|WELLNESS|AESTHETIC)(?=[A-Z])/
+
 export function parseTreatments(treatments: string | null): string[] {
   if (!treatments) return []
 
@@ -36,7 +39,7 @@ export function parseTreatments(treatments: string | null): string[] {
           .filter((t): t is string => t !== null && t.length > 0 && t.length < 200)
       }
     } catch {
-      // JSON parse failed, fall through to comma-separated handling
+      // JSON parse failed, fall through to other parsers
     }
   }
 
@@ -51,6 +54,39 @@ export function parseTreatments(treatments: string | null): string[] {
     } catch {
       // Fall through
     }
+  }
+
+  // Pipe-separated values (e.g. "Botox|Fillers|Laser")
+  if (trimmed.includes('|')) {
+    return trimmed
+      .split('|')
+      .map(t => cleanTreatmentName(t))
+      .filter(t => t.length > 0 && t.length < 100)
+  }
+
+  // Newline-separated values
+  if (trimmed.includes('\n')) {
+    return trimmed
+      .split('\n')
+      .map(t => cleanTreatmentName(t))
+      .filter(t => t.length > 0 && t.length < 100)
+  }
+
+  // CamelCase-concatenated values (e.g. "BODYCoolsculptingCooltoneLaser Hair Removal")
+  // Detect transitions from lowercase to uppercase that suggest word boundaries
+  if (/[a-z][A-Z]/.test(trimmed) && !trimmed.includes(',')) {
+    let processed = trimmed
+      // Strip known category prefixes like "BODY", "FACE" etc.
+      .replace(CATEGORY_PREFIXES, '')
+    // Split on lowercase→uppercase transitions
+    processed = processed
+      .replace(/([a-z])([A-Z])/g, '$1, $2')
+      // Also split on sequences like "ABCDef" → "ABC, Def"
+      .replace(/([A-Z]+)([A-Z][a-z])/g, '$1, $2')
+    return processed
+      .split(',')
+      .map(t => cleanTreatmentName(t))
+      .filter(t => t.length > 0 && t.length < 100)
   }
 
   // Standard comma-separated text handling

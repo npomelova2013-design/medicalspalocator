@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 interface Props {
   totalSpas: number
   totalCities: number
+  avgRating: number
 }
 
 function AnimatedCounter({ target, suffix = '+' }: { target: number; suffix?: string }) {
@@ -52,7 +53,7 @@ function AnimatedCounter({ target, suffix = '+' }: { target: number; suffix?: st
   )
 }
 
-export function StatsBar({ totalSpas, totalCities }: Props) {
+export function StatsBar({ totalSpas, totalCities, avgRating }: Props) {
   return (
     <div className="relative bg-[#1a1a2e] py-20 md:py-28 overflow-hidden">
       {/* Background orbs */}
@@ -86,7 +87,7 @@ export function StatsBar({ totalSpas, totalCities }: Props) {
           {/* Stat: Average Rating */}
           <div className="flex flex-col items-center text-center">
             <span className="text-6xl md:text-7xl font-serif italic font-bold tracking-editorial instagram-gradient-text">
-              4.7
+              {avgRating.toFixed(1)}
             </span>
             <span className="text-sm uppercase tracking-[0.2em] text-[#833AB4]/60 mt-3">
               Average Rating

@@ -15,7 +15,10 @@ export async function getMedSpaBySlug(slug: string): Promise<MedSpa | null> {
     .eq('url_slug', slug)
     .eq('is_active', true)
     .single()
-  if (error || !data) return null
+  if (error || !data) {
+    if (error) console.error('getMedSpaBySlug() error:', error.message)
+    return null
+  }
   return data as MedSpa
 }
 
@@ -27,7 +30,10 @@ export async function getMedSpaById(id: string): Promise<MedSpa | null> {
     .eq('id', id)
     .eq('is_active', true)
     .single()
-  if (error || !data) return null
+  if (error || !data) {
+    if (error) console.error('getMedSpaById() error:', error.message)
+    return null
+  }
   return data as MedSpa
 }
 
@@ -59,7 +65,10 @@ export async function getMedSpasByCity(
     .order('google_rating', { ascending: false, nullsFirst: false })
     .range(offset, offset + limit - 1)
 
-  if (error) return { data: [], count: 0 }
+  if (error) {
+    console.error('getMedSpasByCity() error:', error.message)
+    return { data: [], count: 0 }
+  }
 
   // Re-sort to put premium/enterprise at top (since alphabetical sort puts 'enterprise' first, 'free' second, 'premium' third)
   const sorted = (data as MedSpaCard[]).sort((a, b) => {
@@ -123,13 +132,15 @@ export async function getAllSlugs(): Promise<{ url_slug: string; updated_at: str
 
 export async function getAllCities(): Promise<string[]> {
   const supabase = await createServerSupabase()
-  const { data } = await supabase
-    .from('med_spas')
+  const { data, error } = await supabase
+    .from('city_summary')
     .select('city')
-    .eq('is_active', true)
-  if (!data) return []
-  const unique = Array.from(new Set(data.map(d => d.city))).sort()
-  return unique
+    .order('city', { ascending: true })
+  if (error) {
+    console.error('getAllCities() error:', error.message)
+    return []
+  }
+  return (data || []).map(d => d.city)
 }
 
 export async function getTotalCount(): Promise<number> {

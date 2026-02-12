@@ -1,4 +1,4 @@
-import type { MedSpa } from '@/types/database'
+import type { MedSpa, MedSpaCard } from '@/types/database'
 
 interface JsonLdProps {
   data: Record<string, unknown>
@@ -39,5 +39,59 @@ export function generateListingJsonLd(spa: MedSpa) {
     } : {}),
     medicalSpecialty: ['Dermatology', 'PlasticSurgery'],
     priceRange: '$$',
+  }
+}
+
+export function generateBreadcrumbJsonLd(items: { name: string; url: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  }
+}
+
+export function generateCityListJsonLd(city: string, spas: MedSpaCard[]) {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://medicalspalocator.com'
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `Med Spas in ${city}, IL`,
+    numberOfItems: spas.length,
+    itemListElement: spas.slice(0, 10).map((spa, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'MedicalBusiness',
+        name: spa.business_name,
+        url: `${siteUrl}/med-spa/${spa.url_slug}`,
+        ...(spa.google_rating ? {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: spa.google_rating.toString(),
+            reviewCount: (spa.google_reviews_count || 0).toString(),
+          },
+        } : {}),
+      },
+    })),
+  }
+}
+
+export function generateFaqJsonLd(faqs: { question: string; answer: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
   }
 }

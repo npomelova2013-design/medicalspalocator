@@ -10,6 +10,14 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'videos.pexels.com',
       },
+      {
+        protocol: 'https',
+        hostname: '**.supabase.co',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.googleusercontent.com',
+      },
     ],
   },
 };

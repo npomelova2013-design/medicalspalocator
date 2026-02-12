@@ -5,10 +5,13 @@ import { useRouter } from 'next/navigation'
 import { Search, Play, MapPin, Star, Shield } from 'lucide-react'
 import { InstaParticles } from '@/components/shared/InstaParticles'
 
-const HERO_VIDEOS = [
-  'https://videos.pexels.com/video-files/5069465/5069465-uhd_2560_1440_24fps.mp4',
-  'https://videos.pexels.com/video-files/6981411/6981411-uhd_2560_1440_25fps.mp4',
-  'https://videos.pexels.com/video-files/5069457/5069457-uhd_2560_1440_24fps.mp4',
+const HERO_VIDEO = 'https://videos.pexels.com/video-files/5069465/5069465-uhd_2560_1440_24fps.mp4'
+
+// Static Pexels images for the showcase cards (fast loading, no buffering)
+const CARD_IMAGES = [
+  'https://images.pexels.com/photos/3985329/pexels-photo-3985329.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/3997989/pexels-photo-3997989.jpeg?auto=compress&cs=tinysrgb&w=400',
+  'https://images.pexels.com/photos/3738355/pexels-photo-3738355.jpeg?auto=compress&cs=tinysrgb&w=400',
 ]
 
 export function Hero() {
@@ -30,9 +33,11 @@ export function Hero() {
         muted
         loop
         playsInline
+        preload="auto"
+        poster="https://images.pexels.com/photos/3985329/pexels-photo-3985329.jpeg?auto=compress&cs=tinysrgb&w=1920"
         className="absolute inset-0 w-full h-full object-cover scale-105"
       >
-        <source src={HERO_VIDEOS[0]} type="video/mp4" />
+        <source src={HERO_VIDEO} type="video/mp4" />
       </video>
 
       {/* Cinematic overlay — dark at edges, clear in center */}
@@ -114,21 +119,17 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right: Video showcase cards */}
+          {/* Right: Image showcase cards (static images — fast loading) */}
           <div className="lg:col-span-5 hidden lg:flex flex-col gap-4">
-            {/* Floating video thumbnails — stacked */}
             <div className="relative">
-              {/* Main featured video card */}
+              {/* Main featured card */}
               <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/30 aspect-[4/3]">
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
+                <img
+                  src={CARD_IMAGES[0]}
+                  alt="Premium med spa treatment"
                   className="w-full h-full object-cover"
-                >
-                  <source src={HERO_VIDEOS[1]} type="video/mp4" />
-                </video>
+                  loading="eager"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-5">
                   <div className="flex items-center gap-2 mb-2">
@@ -142,28 +143,22 @@ export function Hero() {
                   <p className="text-white font-semibold text-sm">Premium Med Spa Experience</p>
                   <p className="text-white/50 text-xs mt-0.5">Chicago, IL</p>
                 </div>
-                {/* Play indicator */}
-                <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-sm">
-                  <span className="relative flex h-1.5 w-1.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500" />
-                  </span>
-                  <span className="text-[10px] text-white/80 font-medium uppercase tracking-wider">Live</span>
+                {/* Featured badge */}
+                <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-[#833AB4]/80 to-[#E1306C]/80 backdrop-blur-sm">
+                  <Star className="w-3 h-3 fill-[#FCAF45] text-[#FCAF45]" />
+                  <span className="text-[10px] text-white font-medium uppercase tracking-wider">Featured</span>
                 </div>
               </div>
 
-              {/* Two smaller video thumbnails below */}
+              {/* Two smaller image thumbnails */}
               <div className="grid grid-cols-2 gap-3 mt-3">
                 <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-lg aspect-video group cursor-pointer">
-                  <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
+                  <img
+                    src={CARD_IMAGES[1]}
+                    alt="Laser treatment procedure"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  >
-                    <source src={HERO_VIDEOS[2]} type="video/mp4" />
-                  </video>
+                    loading="eager"
+                  />
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/30 transition-colors">
@@ -175,15 +170,12 @@ export function Hero() {
                   </div>
                 </div>
                 <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-lg aspect-video group cursor-pointer">
-                  <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
+                  <img
+                    src={CARD_IMAGES[2]}
+                    alt="Facial rejuvenation treatment"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  >
-                    <source src={HERO_VIDEOS[0]} type="video/mp4" />
-                  </video>
+                    loading="eager"
+                  />
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/30 transition-colors">
@@ -199,15 +191,15 @@ export function Hero() {
 
             {/* Trust indicators row */}
             <div className="flex items-center justify-center gap-6 mt-2">
-              <div className="flex items-center gap-1.5 text-white/40">
+              <div className="flex items-center gap-1.5 text-white/60">
                 <Shield className="w-3.5 h-3.5" />
                 <span className="text-[11px] font-medium">Verified</span>
               </div>
-              <div className="flex items-center gap-1.5 text-white/40">
+              <div className="flex items-center gap-1.5 text-white/60">
                 <MapPin className="w-3.5 h-3.5" />
                 <span className="text-[11px] font-medium">42 Cities</span>
               </div>
-              <div className="flex items-center gap-1.5 text-white/40">
+              <div className="flex items-center gap-1.5 text-white/60">
                 <Star className="w-3.5 h-3.5 fill-current" />
                 <span className="text-[11px] font-medium">4.8 Avg</span>
               </div>

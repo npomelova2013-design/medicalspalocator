@@ -13,7 +13,7 @@ export default async function ThankYouPage({ searchParams }: Props) {
   const isClaim = type === 'claim'
 
   return (
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-16 text-center">
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-16 pt-28 text-center">
       <CheckCircle2 className="w-16 h-16 text-[#E1306C] mx-auto mb-6" />
       <h1 className="text-3xl font-bold text-[#262626] mb-4">
         {isClaim ? 'Claim Request Submitted!' : 'Thanks for Your Request!'}
@@ -26,7 +26,7 @@ export default async function ThankYouPage({ searchParams }: Props) {
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <Link
           href="/"
-          className="inline-block bg-[#833AB4] text-white hover:bg-[#B8960E] font-medium px-6 py-2.5 rounded-lg transition"
+          className="inline-block bg-gradient-to-r from-[#833AB4] to-[#E1306C] text-white hover:from-[#E1306C] hover:to-[#833AB4] font-medium px-6 py-2.5 rounded-full shadow-md shadow-[#833AB4]/20 hover:shadow-lg transition-all"
         >
           Browse More Med Spas
         </Link>
