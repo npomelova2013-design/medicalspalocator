@@ -6,7 +6,9 @@ import Image from 'next/image'
 import { Search, MapPin, Star, Shield } from 'lucide-react'
 import { InstaParticles } from '@/components/shared/InstaParticles'
 
-const HERO_VIDEO = '/videos/hero-bg.mp4'
+// HD cinematic video: stream from Pexels CDN, local fallback
+const HERO_VIDEO_HD = 'https://videos.pexels.com/video-files/5069465/5069465-hd_1920_1080_24fps.mp4'
+const HERO_VIDEO_LOCAL = '/videos/hero-bg.mp4'
 
 // Local luxury images for the showcase cards (fast loading from public/)
 const CARD_IMAGES = [
@@ -34,7 +36,7 @@ export function Hero({ totalSpas, totalCities, avgRating }: HeroProps) {
 
   return (
     <section className="relative overflow-hidden min-h-[100vh] flex items-center">
-      {/* Primary Video Background — full bleed */}
+      {/* Primary Video Background — cinematic zoom out */}
       <video
         autoPlay
         muted
@@ -42,18 +44,25 @@ export function Hero({ totalSpas, totalCities, avgRating }: HeroProps) {
         playsInline
         preload="auto"
         poster="/images/hero-portrait.png"
-        className="absolute inset-0 w-full h-full object-cover object-top scale-105"
+        className="absolute inset-0 w-full h-full object-cover object-top animate-cinematic-zoom"
       >
-        <source src={HERO_VIDEO} type="video/mp4" />
+        {/* HD stream first, local fallback */}
+        <source src={HERO_VIDEO_HD} type="video/mp4" />
+        <source src={HERO_VIDEO_LOCAL} type="video/mp4" />
       </video>
 
-      {/* Cinematic overlay — dark at edges, clear in center */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d1a]/80 via-[#0d0d1a]/30 to-[#0d0d1a]/90" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0d0d1a]/70 via-transparent to-[#0d0d1a]/50" />
+      {/* Golden hour warm lighting overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#D4A574]/20 via-[#C8956C]/10 to-[#B8860B]/15 mix-blend-overlay" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#8B6914]/8 via-transparent to-[#D4A574]/10 mix-blend-soft-light" />
 
-      {/* Subtle Instagram color wash on edges */}
-      <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-[#833AB4]/20 to-transparent" />
-      <div className="absolute bottom-0 right-0 w-1/3 h-1/2 bg-gradient-to-tl from-[#E1306C]/15 to-transparent" />
+      {/* Cinematic overlay — dark at edges, clear in center */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d1a]/75 via-[#0d0d1a]/20 to-[#0d0d1a]/85" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0d0d1a]/65 via-transparent to-[#0d0d1a]/45" />
+
+      {/* Subtle warm + purple color wash on edges */}
+      <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-[#833AB4]/15 to-transparent" />
+      <div className="absolute bottom-0 right-0 w-1/3 h-1/2 bg-gradient-to-tl from-[#E1306C]/12 to-transparent" />
+      <div className="absolute top-0 right-0 w-1/4 h-1/3 bg-gradient-to-bl from-[#D4A574]/10 to-transparent" />
 
       {/* Instagram particles */}
       <InstaParticles />

@@ -156,6 +156,15 @@
     animation: borderGlow 4s ease-in-out infinite;
   }
 
+  /* ─── Cinematic Zoom Out (Ken Burns) ─── */
+  @keyframes cinematicZoomOut {
+    0% { transform: scale(1.2); }
+    100% { transform: scale(1.0); }
+  }
+  .animate-cinematic-zoom {
+    animation: cinematicZoomOut 25s ease-out forwards;
+  }
+
   /* ─── Hover Effects ─── */
   .hover-lift {
     @apply transition-all duration-300;
