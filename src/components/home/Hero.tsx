@@ -15,7 +15,13 @@ const CARD_IMAGES = [
   'https://images.pexels.com/photos/3738355/pexels-photo-3738355.jpeg?auto=compress&cs=tinysrgb&w=400',
 ]
 
-export function Hero() {
+interface HeroProps {
+  totalSpas: number
+  totalCities: number
+  avgRating: number
+}
+
+export function Hero({ totalSpas, totalCities, avgRating }: HeroProps) {
   const [query, setQuery] = useState('')
   const router = useRouter()
 
@@ -64,7 +70,7 @@ export function Hero() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FCAF45]" />
               </span>
               <span className="text-xs font-medium text-white/80 tracking-wide uppercase">
-                286+ verified med spas in Illinois
+                {totalSpas}+ verified med spas in Illinois
               </span>
             </div>
 
@@ -202,11 +208,11 @@ export function Hero() {
               </div>
               <div className="flex items-center gap-1.5 text-white/60">
                 <MapPin className="w-3.5 h-3.5" />
-                <span className="text-[11px] font-medium">42 Cities</span>
+                <span className="text-[11px] font-medium">{totalCities} Cities</span>
               </div>
               <div className="flex items-center gap-1.5 text-white/60">
                 <Star className="w-3.5 h-3.5 fill-current" />
-                <span className="text-[11px] font-medium">4.8 Avg</span>
+                <span className="text-[11px] font-medium">{avgRating.toFixed(1)} Avg</span>
               </div>
             </div>
           </div>
