@@ -54,7 +54,7 @@ export function Header() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isDarkText
-            ? 'bg-[#FAFAFA]/95 backdrop-blur-lg border-b border-[#833AB4]/10 shadow-[0_1px_3px_rgba(44,24,16,0.06)]'
+            ? 'bg-white/98 backdrop-blur-lg border-b border-[#833AB4]/15 shadow-[0_1px_4px_rgba(131,58,180,0.08)]'
             : 'bg-transparent border-b border-transparent'
         }`}
       >

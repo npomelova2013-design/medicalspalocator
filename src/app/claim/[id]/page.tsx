@@ -20,7 +20,7 @@ export default async function ClaimPage({ params }: Props) {
   if (!spa) notFound()
 
   return (
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8">
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 pt-24">
       <nav className="text-sm text-[#262626]/50 mb-6">
         <Link href="/" className="hover:text-[#E1306C]">Home</Link>
         <span className="mx-2">/</span>
