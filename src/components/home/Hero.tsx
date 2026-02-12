@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import { Search, Play, MapPin, Star, Shield } from 'lucide-react'
+import { Search, MapPin, Star, Shield } from 'lucide-react'
 import { InstaParticles } from '@/components/shared/InstaParticles'
 
 const HERO_VIDEO = '/videos/hero-bg.mp4'
@@ -42,7 +42,7 @@ export function Hero({ totalSpas, totalCities, avgRating }: HeroProps) {
         playsInline
         preload="auto"
         poster="/images/hero-portrait.png"
-        className="absolute inset-0 w-full h-full object-cover scale-105"
+        className="absolute inset-0 w-full h-full object-cover object-top scale-105"
       >
         <source src={HERO_VIDEO} type="video/mp4" />
       </video>
@@ -130,7 +130,7 @@ export function Hero({ totalSpas, totalCities, avgRating }: HeroProps) {
           <div className="lg:col-span-5 hidden lg:flex flex-col gap-4">
             <div className="relative">
               {/* Main featured card */}
-              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/30 aspect-[4/3]">
+              <div className="relative rounded-2xl overflow-hidden border border-[#833AB4]/20 animate-border-glow aspect-[4/3]">
                 <Image
                   src={CARD_IMAGES[0]}
                   alt="Premium med spa treatment"
@@ -142,10 +142,11 @@ export function Hero({ totalSpas, totalCities, avgRating }: HeroProps) {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-5">
                   <div className="flex items-center gap-2 mb-2">
-                    <div className="flex -space-x-0.5">
+                    <div className="relative overflow-hidden flex -space-x-0.5">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 fill-[#FCAF45] text-[#FCAF45]" />
+                        <Star key={i} className="w-3.5 h-3.5 fill-[#FCAF45] text-[#FCAF45] relative z-10" />
                       ))}
+                      <span className="absolute inset-0 shimmer-sweep-gold" />
                     </div>
                     <span className="text-white/80 text-xs font-medium">5.0</span>
                   </div>
@@ -153,9 +154,10 @@ export function Hero({ totalSpas, totalCities, avgRating }: HeroProps) {
                   <p className="text-white/50 text-xs mt-0.5">Chicago, IL</p>
                 </div>
                 {/* Featured badge */}
-                <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-[#833AB4]/80 to-[#E1306C]/80 backdrop-blur-sm">
-                  <Star className="w-3 h-3 fill-[#FCAF45] text-[#FCAF45]" />
-                  <span className="text-[10px] text-white font-medium uppercase tracking-wider">Featured</span>
+                <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-[#833AB4]/80 to-[#E1306C]/80 backdrop-blur-sm relative overflow-hidden">
+                  <span className="absolute inset-0 shimmer-sweep" />
+                  <Star className="w-3 h-3 fill-[#FCAF45] text-[#FCAF45] relative z-10" />
+                  <span className="text-[10px] text-white font-medium uppercase tracking-wider relative z-10">Featured</span>
                 </div>
               </div>
 
@@ -164,37 +166,27 @@ export function Hero({ totalSpas, totalCities, avgRating }: HeroProps) {
                 <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-lg aspect-video group cursor-pointer">
                   <Image
                     src={CARD_IMAGES[1]}
-                    alt="Laser treatment procedure"
+                    alt="Luxury spa professional"
                     fill
                     sizes="(max-width: 1024px) 0px, 20vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                      <Play className="w-3.5 h-3.5 text-white ml-0.5" fill="white" />
-                    </div>
-                  </div>
+                  <div className="absolute inset-0 bg-black/15 group-hover:bg-black/10 transition-colors" />
                   <div className="absolute bottom-2 left-2 right-2">
-                    <p className="text-white text-[11px] font-medium truncate">Laser Treatment</p>
+                    <p className="text-white text-[11px] font-medium truncate">Expert Care</p>
                   </div>
                 </div>
                 <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-lg aspect-video group cursor-pointer">
                   <Image
                     src={CARD_IMAGES[2]}
-                    alt="Facial rejuvenation treatment"
+                    alt="Beauty treatment results"
                     fill
                     sizes="(max-width: 1024px) 0px, 20vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                      <Play className="w-3.5 h-3.5 text-white ml-0.5" fill="white" />
-                    </div>
-                  </div>
+                  <div className="absolute inset-0 bg-black/15 group-hover:bg-black/10 transition-colors" />
                   <div className="absolute bottom-2 left-2 right-2">
-                    <p className="text-white text-[11px] font-medium truncate">Facial Rejuvenation</p>
+                    <p className="text-white text-[11px] font-medium truncate">Radiant Results</p>
                   </div>
                 </div>
               </div>

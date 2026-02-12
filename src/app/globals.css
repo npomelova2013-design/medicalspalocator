@@ -131,6 +131,31 @@
     100% { background-position: -200% 0; }
   }
 
+  /* ─── Shimmer Sweep Overlay ─── */
+  .shimmer-sweep {
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%);
+    background-size: 200% 100%;
+    animation: shimmerSweep 3s ease-in-out infinite;
+  }
+  .shimmer-sweep-gold {
+    background: linear-gradient(110deg, transparent 30%, rgba(252,175,69,0.5) 50%, transparent 70%);
+    background-size: 200% 100%;
+    animation: shimmerSweep 2.5s ease-in-out infinite;
+  }
+  @keyframes shimmerSweep {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* ─── Purple Glow Pulse (border/shadow only) ─── */
+  @keyframes borderGlow {
+    0%, 100% { box-shadow: 0 0 15px rgba(131,58,180,0.12); }
+    50% { box-shadow: 0 0 25px rgba(131,58,180,0.25); }
+  }
+  .animate-border-glow {
+    animation: borderGlow 4s ease-in-out infinite;
+  }
+
   /* ─── Hover Effects ─── */
   .hover-lift {
     @apply transition-all duration-300;

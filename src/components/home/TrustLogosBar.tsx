@@ -11,22 +11,31 @@ const TRUST_LOGOS = [
 ]
 
 export function TrustLogosBar() {
+  // Duplicate array for seamless infinite loop
+  const items = [...TRUST_LOGOS, ...TRUST_LOGOS]
+
   return (
-    <section className="bg-[#FAFAFA] border-y border-[#833AB4]/10 py-10 md:py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <p className="text-center text-[10px] uppercase tracking-[0.3em] text-[#262626]/25 mb-8">
-          Trusted by practitioners featured on
-        </p>
-        <div className="flex items-center justify-center gap-6 md:gap-10 lg:gap-14 flex-wrap">
-          {TRUST_LOGOS.map((logo) => (
+    <section className="relative bg-gradient-to-r from-[#FAFAFA] via-white to-[#FAFAFA] border-y border-[#833AB4]/10 py-8 md:py-10 overflow-hidden">
+      {/* Left fade mask */}
+      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+      {/* Right fade mask */}
+      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+      <p className="text-center text-[10px] uppercase tracking-[0.3em] text-[#262626]/25 mb-6 relative z-20">
+        Trusted by practitioners featured on
+      </p>
+
+      <div className="marquee-track whitespace-nowrap">
+        {items.map((logo, i) => (
+          <span key={`${logo.name}-${i}`} className="inline-flex items-center">
             <span
-              key={logo.name}
-              className={`text-base md:text-lg lg:text-xl text-[#262626]/20 hover:text-[#262626]/35 transition-colors duration-300 select-none ${logo.style}`}
+              className={`text-lg md:text-xl text-[#262626]/25 select-none px-6 md:px-10 ${logo.style}`}
             >
               {logo.display}
             </span>
-          ))}
-        </div>
+            <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#833AB4]/30 to-[#E1306C]/30 flex-shrink-0" />
+          </span>
+        ))}
       </div>
     </section>
   )
