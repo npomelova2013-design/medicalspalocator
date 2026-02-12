@@ -11,7 +11,7 @@ const TESTIMONIALS = [
     rating: 5,
     treatment: 'Botox & Fillers',
     videoSrc: 'https://videos.pexels.com/video-files/7581709/7581709-hd_1920_1080_24fps.mp4',
-    poster: 'https://images.pexels.com/photos/3985329/pexels-photo-3985329.jpeg?auto=compress&cs=tinysrgb&w=600',
+    poster: '/images/beauty-closeup.png',
   },
   {
     quote: 'Finding the right provider used to be so stressful. This directory made comparing options effortless.',
@@ -20,7 +20,7 @@ const TESTIMONIALS = [
     rating: 5,
     treatment: 'Laser Treatment',
     videoSrc: 'https://videos.pexels.com/video-files/7581719/7581719-hd_1920_1080_24fps.mp4',
-    poster: 'https://images.pexels.com/photos/3997989/pexels-photo-3997989.jpeg?auto=compress&cs=tinysrgb&w=600',
+    poster: '/images/beauty-braids.png',
   },
   {
     quote: 'I love that I could read real reviews and compare ratings before booking my first appointment.',
@@ -29,7 +29,7 @@ const TESTIMONIALS = [
     rating: 5,
     treatment: 'HydraFacial',
     videoSrc: 'https://videos.pexels.com/video-files/8131881/8131881-hd_1920_1080_24fps.mp4',
-    poster: 'https://images.pexels.com/photos/3738355/pexels-photo-3738355.jpeg?auto=compress&cs=tinysrgb&w=600',
+    poster: '/images/hero-portrait.png',
   },
 ]
 

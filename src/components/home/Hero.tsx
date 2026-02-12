@@ -8,11 +8,11 @@ import { InstaParticles } from '@/components/shared/InstaParticles'
 
 const HERO_VIDEO = 'https://videos.pexels.com/video-files/5069465/5069465-uhd_2560_1440_24fps.mp4'
 
-// Static Pexels images for the showcase cards (fast loading, no buffering)
+// Local luxury images for the showcase cards (fast loading from public/)
 const CARD_IMAGES = [
-  'https://images.pexels.com/photos/3985329/pexels-photo-3985329.jpeg?auto=compress&cs=tinysrgb&w=600',
-  'https://images.pexels.com/photos/3997989/pexels-photo-3997989.jpeg?auto=compress&cs=tinysrgb&w=400',
-  'https://images.pexels.com/photos/3738355/pexels-photo-3738355.jpeg?auto=compress&cs=tinysrgb&w=400',
+  '/images/hero-portrait.png',
+  '/images/treatment-collage.png',
+  '/images/beauty-closeup.png',
 ]
 
 interface HeroProps {
@@ -41,7 +41,7 @@ export function Hero({ totalSpas, totalCities, avgRating }: HeroProps) {
         loop
         playsInline
         preload="auto"
-        poster="https://images.pexels.com/photos/3985329/pexels-photo-3985329.jpeg?auto=compress&cs=tinysrgb&w=1920"
+        poster="/images/spa-professional.png"
         className="absolute inset-0 w-full h-full object-cover scale-105"
       >
         <source src={HERO_VIDEO} type="video/mp4" />
