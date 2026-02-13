@@ -18,7 +18,7 @@ export function MedSpaCard({ spa }: Props) {
 
   return (
     <div className="gradient-border-hover group">
-      <div className="rounded-2xl border border-[#833AB4]/10 bg-white overflow-hidden transition-all duration-300">
+      <div className="rounded-2xl border border-[#833AB4]/10 bg-white overflow-hidden transition-all duration-300 shadow-md shadow-black/[0.06]">
         {spa.cover_image_url ? (
           <div className="h-40 overflow-hidden">
             <Image

@@ -7,6 +7,7 @@ import { FeaturedSpas } from '@/components/home/FeaturedSpas'
 import { TreatmentMarquee } from '@/components/home/TreatmentMarquee'
 import { TrustLogosBar } from '@/components/home/TrustLogosBar'
 import { TreatmentShowcase } from '@/components/home/TreatmentShowcase'
+import { TreatmentCarousel } from '@/components/home/TreatmentCarousel'
 import { VideoTestimonials } from '@/components/home/VideoTestimonials'
 import { getCitySummaries } from '@/lib/queries/cities'
 import { getFeaturedSpas, getTotalCount } from '@/lib/queries/med-spas'
@@ -35,6 +36,9 @@ export default async function HomePage() {
       <TrustLogosBar />
       <CityGrid cities={cities} />
       <FeaturedSpas spas={featured} />
+
+      {/* Treatment Carousel — peek layout with luxury texture bg */}
+      <TreatmentCarousel />
 
       {/* Treatment Showcase — video bg + glassmorphism cards */}
       <TreatmentShowcase />

@@ -252,6 +252,11 @@ html {
   outline-offset: 2px;
 }
 
+/* ─── Card Pop Shadow ─── */
+.card-pop-shadow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
 /* ─── Accessibility: Reduced Motion ─── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

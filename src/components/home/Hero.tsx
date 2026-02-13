@@ -3,12 +3,12 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import { Search, MapPin, Star, Shield } from 'lucide-react'
+import { Search } from 'lucide-react'
 import { InstaParticles } from '@/components/shared/InstaParticles'
 
-// HD cinematic video: stream from Pexels CDN, local fallback
-const HERO_VIDEO_HD = 'https://videos.pexels.com/video-files/5524244/5524244-hd_1920_1080_30fps.mp4'
-const HERO_VIDEO_LOCAL = '/videos/hero-bg.mp4'
+// Local glam video with fallback
+const HERO_VIDEO_PRIMARY = '/videos/hero-glam.mp4'
+const HERO_VIDEO_FALLBACK = '/videos/hero-bg.mp4'
 
 // Local luxury images for the showcase cards (fast loading from public/)
 const CARD_IMAGES = [
@@ -19,11 +19,11 @@ const CARD_IMAGES = [
 
 interface HeroProps {
   totalSpas: number
-  totalCities: number
-  avgRating: number
+  totalCities?: number
+  avgRating?: number
 }
 
-export function Hero({ totalSpas, totalCities, avgRating }: HeroProps) {
+export function Hero({ totalSpas }: HeroProps) {
   const [query, setQuery] = useState('')
   const router = useRouter()
 
@@ -46,9 +46,8 @@ export function Hero({ totalSpas, totalCities, avgRating }: HeroProps) {
         poster="/images/hero-portrait.png"
         className="absolute inset-0 w-full h-full object-cover object-top animate-cinematic-zoom"
       >
-        {/* HD stream first, local fallback */}
-        <source src={HERO_VIDEO_HD} type="video/mp4" />
-        <source src={HERO_VIDEO_LOCAL} type="video/mp4" />
+        <source src={HERO_VIDEO_PRIMARY} type="video/mp4" />
+        <source src={HERO_VIDEO_FALLBACK} type="video/mp4" />
       </video>
 
       {/* Golden hour warm lighting overlay */}
@@ -148,26 +147,7 @@ export function Hero({ totalSpas, totalCities, avgRating }: HeroProps) {
                   className="object-cover"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="relative overflow-hidden flex -space-x-0.5">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 fill-[#FCAF45] text-[#FCAF45] relative z-10" />
-                      ))}
-                      <span className="absolute inset-0 shimmer-sweep-gold" />
-                    </div>
-                    <span className="text-white/80 text-xs font-medium">5.0</span>
-                  </div>
-                  <p className="text-white font-semibold text-sm">Premium Med Spa Experience</p>
-                  <p className="text-white/50 text-xs mt-0.5">Chicago, IL</p>
-                </div>
-                {/* Featured badge */}
-                <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-[#833AB4]/80 to-[#E1306C]/80 backdrop-blur-sm relative overflow-hidden">
-                  <span className="absolute inset-0 shimmer-sweep" />
-                  <Star className="w-3 h-3 fill-[#FCAF45] text-[#FCAF45] relative z-10" />
-                  <span className="text-[10px] text-white font-medium uppercase tracking-wider relative z-10">Featured</span>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
               </div>
 
               {/* Two smaller image thumbnails */}
@@ -180,10 +160,7 @@ export function Hero({ totalSpas, totalCities, avgRating }: HeroProps) {
                     sizes="(max-width: 1024px) 0px, 20vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/15 group-hover:bg-black/10 transition-colors" />
-                  <div className="absolute bottom-2 left-2 right-2">
-                    <p className="text-white text-[11px] font-medium truncate">Expert Care</p>
-                  </div>
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors" />
                 </div>
                 <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-lg aspect-video group cursor-pointer">
                   <Image
@@ -193,29 +170,11 @@ export function Hero({ totalSpas, totalCities, avgRating }: HeroProps) {
                     sizes="(max-width: 1024px) 0px, 20vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/15 group-hover:bg-black/10 transition-colors" />
-                  <div className="absolute bottom-2 left-2 right-2">
-                    <p className="text-white text-[11px] font-medium truncate">Radiant Results</p>
-                  </div>
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors" />
                 </div>
               </div>
             </div>
 
-            {/* Trust indicators row */}
-            <div className="flex items-center justify-center gap-6 mt-2">
-              <div className="flex items-center gap-1.5 text-white/60">
-                <Shield className="w-3.5 h-3.5" />
-                <span className="text-[11px] font-medium">Verified</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-white/60">
-                <MapPin className="w-3.5 h-3.5" />
-                <span className="text-[11px] font-medium">{totalCities} Cities</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-white/60">
-                <Star className="w-3.5 h-3.5 fill-current" />
-                <span className="text-[11px] font-medium">{avgRating.toFixed(1)} Avg</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
