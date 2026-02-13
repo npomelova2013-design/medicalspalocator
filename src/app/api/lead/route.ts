@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { sendEmail, notifyAdmin } from '@/lib/email'
+import { getLeadConfirmationHtml, getAdminNotificationHtml } from '@/lib/email-templates'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const PHONE_RE = /^\+?[\d\s\-().]{10,15}$/
@@ -69,6 +71,27 @@ export async function POST(request: NextRequest) {
       lead_id: data?.id || null,
       page_path: sanitize(landing_page, 500) || '/',
     })
+
+    // Fire-and-forget email notifications
+    if (emailClean) {
+      sendEmail({
+        to: emailClean,
+        subject: 'Your consultation request has been received!',
+        html: getLeadConfirmationHtml(name),
+      }).catch(() => {})
+    }
+    notifyAdmin(
+      `New Lead: ${name} - ${sanitize(service_interest, 200) || 'General'}`,
+      getAdminNotificationHtml({
+        name,
+        email: emailClean,
+        phone: phoneClean,
+        source: 'website_form',
+        serviceInterest: sanitize(service_interest, 200),
+        city: sanitize(preferred_city, 100),
+        notes: sanitize(notes, 500),
+      })
+    ).catch(() => {})
 
     return NextResponse.json({ success: true, id: data?.id })
   } catch (err) {

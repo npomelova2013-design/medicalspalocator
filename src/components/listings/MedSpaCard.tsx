@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { MapPin } from 'lucide-react'
+import { MapPin, Sparkles } from 'lucide-react'
 import { StarRating } from '@/components/shared/StarRating'
 import { PremiumBadge } from '@/components/shared/PremiumBadge'
 import { VerifiedBadge } from '@/components/shared/VerifiedBadge'
@@ -58,6 +58,13 @@ export function MedSpaCard({ spa }: Props) {
               {treatments.map((t) => (
                 <TreatmentTag key={t} treatment={t} />
               ))}
+            </div>
+          )}
+
+          {spa.special_offer && (
+            <div className="mt-3 bg-gradient-to-r from-[#833AB4]/10 to-[#E1306C]/10 border border-[#833AB4]/20 rounded-lg p-2.5 flex items-start gap-2">
+              <Sparkles className="w-3.5 h-3.5 text-[#833AB4] flex-shrink-0 mt-0.5" />
+              <p className="text-xs text-[#1a1a2e] font-medium line-clamp-2">{spa.special_offer}</p>
             </div>
           )}
 

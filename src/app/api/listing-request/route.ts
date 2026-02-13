@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { sendEmail, notifyAdmin } from '@/lib/email'
+import { getListingConfirmationHtml, getAdminNotificationHtml } from '@/lib/email-templates'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const PHONE_RE = /^\+?[\d\s\-().]{10,15}$/
@@ -69,6 +71,24 @@ export async function POST(request: NextRequest) {
       console.error('Listing request insert error:', error)
       return NextResponse.json({ error: 'Failed to save listing request' }, { status: 500 })
     }
+
+    // Fire-and-forget email notifications
+    sendEmail({
+      to: emailClean,
+      subject: 'Your listing request has been received!',
+      html: getListingConfirmationHtml(ownerNameClean, businessNameClean),
+    }).catch(() => {})
+    notifyAdmin(
+      `New Listing Request: ${businessNameClean} (${cityClean})`,
+      getAdminNotificationHtml({
+        name: ownerNameClean,
+        email: emailClean,
+        phone: phoneClean,
+        source: 'listing_request',
+        serviceInterest: `New Listing - ${businessNameClean}, ${cityClean}`,
+        notes: noteParts,
+      })
+    ).catch(() => {})
 
     return NextResponse.json({ success: true })
   } catch (err) {

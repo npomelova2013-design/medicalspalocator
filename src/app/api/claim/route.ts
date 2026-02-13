@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { sendEmail, notifyAdmin } from '@/lib/email'
+import { getClaimConfirmationHtml, getAdminNotificationHtml } from '@/lib/email-templates'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const PHONE_RE = /^\+?[\d\s\-().]{10,15}$/
@@ -54,6 +56,24 @@ export async function POST(request: NextRequest) {
       console.error('Claim insert error:', error)
       return NextResponse.json({ error: 'Failed to save claim' }, { status: 500 })
     }
+
+    // Fire-and-forget email notifications
+    sendEmail({
+      to: emailClean,
+      subject: 'Your claim request has been received!',
+      html: getClaimConfirmationHtml(nameClean, sanitize(medSpaId, 100) || 'your business'),
+    }).catch(() => {})
+    notifyAdmin(
+      `New Claim Request: ${nameClean}`,
+      getAdminNotificationHtml({
+        name: nameClean,
+        email: emailClean,
+        phone: phoneClean,
+        source: 'claim_form',
+        serviceInterest: `Claim Request - ${sanitize(role, 50) || 'owner'}`,
+        notes: `How heard: ${sanitize(howHeard, 100) || 'unknown'}. ${sanitize(message, 500) || ''}`.trim(),
+      })
+    ).catch(() => {})
 
     return NextResponse.json({ success: true })
   } catch (err) {
