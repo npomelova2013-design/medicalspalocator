@@ -17,6 +17,32 @@ export async function submitLead(lead: Partial<ConsumerLead>): Promise<{ success
   }
 }
 
+export async function submitListingRequest(data: {
+  businessName: string
+  ownerName: string
+  email: string
+  phone: string
+  website?: string
+  city: string
+  services: string
+  message?: string
+}): Promise<{ success: boolean; error?: string }> {
+  try {
+    const res = await fetch('/api/listing-request', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    })
+    if (!res.ok) {
+      const err = await res.json()
+      return { success: false, error: err.error || 'Failed to submit' }
+    }
+    return { success: true }
+  } catch {
+    return { success: false, error: 'Network error' }
+  }
+}
+
 export async function submitClaimRequest(data: {
   medSpaId: string
   name: string

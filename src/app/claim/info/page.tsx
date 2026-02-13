@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { CheckCircle2, BarChart3, Star, Shield, Search } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -57,6 +58,12 @@ export default function ClaimInfoPage() {
             </button>
           </div>
         </form>
+        <p className="mt-4 text-sm text-[#262626]/50">
+          Don&apos;t see your business?{' '}
+          <Link href="/claim/new" className="text-[#E1306C] hover:underline font-medium">
+            Add your med spa to our directory &rarr;
+          </Link>
+        </p>
       </div>
     </div>
   )

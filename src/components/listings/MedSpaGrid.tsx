@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { MedSpaCard } from './MedSpaCard'
 import { PremiumMedSpaCard } from './PremiumMedSpaCard'
 import type { MedSpaCard as MedSpaCardType } from '@/types/database'
@@ -5,13 +6,22 @@ import type { MedSpaCard as MedSpaCardType } from '@/types/database'
 interface Props {
   spas: MedSpaCardType[]
   emptyMessage?: string
+  showListingCTA?: boolean
 }
 
-export function MedSpaGrid({ spas, emptyMessage = 'No med spas found.' }: Props) {
+export function MedSpaGrid({ spas, emptyMessage = 'No med spas found.', showListingCTA }: Props) {
   if (spas.length === 0) {
     return (
       <div className="text-center py-16">
         <p className="text-slate-400 text-lg">{emptyMessage}</p>
+        {showListingCTA && (
+          <p className="mt-4 text-[#262626]/50">
+            Own a med spa?{' '}
+            <Link href="/claim/new" className="text-[#E1306C] hover:underline font-medium">
+              Add your business to our directory &rarr;
+            </Link>
+          </p>
+        )}
       </div>
     )
   }

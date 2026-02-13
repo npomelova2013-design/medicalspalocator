@@ -65,7 +65,7 @@ export default async function SearchPage({ searchParams }: Props) {
         </div>
       )}
 
-      <MedSpaGrid spas={spas} emptyMessage="No results found. Try a different search term." />
+      <MedSpaGrid spas={spas} emptyMessage="No results found. Try a different search term." showListingCTA={!!query} />
     </div>
   )
 }
