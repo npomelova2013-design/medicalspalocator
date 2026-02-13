@@ -75,9 +75,9 @@ export default async function CityPage({ params }: Props) {
       <JsonLd data={generateFaqJsonLd(faqs)} />
 
       {/* Breadcrumb */}
-      <nav className="text-sm text-[#262626]/40 mb-8">
-        <Link href="/" className="hover:text-[#833AB4] transition">Home</Link>
-        <span className="mx-2 text-[#262626]/20">/</span>
+      <nav className="text-sm text-[#262626]/50 mb-8">
+        <Link href="/" className="hover:text-[#E1306C] transition">Home</Link>
+        <span className="mx-2 text-[#262626]/30">/</span>
         <span className="text-[#262626]/70">{city}, IL</span>
       </nav>
 

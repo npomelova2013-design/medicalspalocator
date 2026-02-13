@@ -1,12 +1,13 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { MapPin, Sparkles } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 import { StarRating } from '@/components/shared/StarRating'
 import { PremiumBadge } from '@/components/shared/PremiumBadge'
 import { VerifiedBadge } from '@/components/shared/VerifiedBadge'
 import { TreatmentTag } from '@/components/shared/TreatmentTag'
 import { ClickToCall } from '@/components/shared/ClickToCall'
 import { getTopTreatments } from '@/lib/utils/treatments'
+import { getPlaceholderImage } from '@/lib/utils/images'
 import type { MedSpaCard as MedSpaCardType } from '@/types/database'
 
 interface Props {
@@ -19,24 +20,15 @@ export function MedSpaCard({ spa }: Props) {
   return (
     <div className="gradient-border-hover group">
       <div className="rounded-2xl border border-[#833AB4]/10 bg-white overflow-hidden transition-all duration-300 shadow-md shadow-black/[0.06]">
-        {spa.cover_image_url ? (
-          <div className="h-40 overflow-hidden">
-            <Image
-              src={spa.cover_image_url}
-              alt={spa.business_name}
-              width={400}
-              height={160}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        ) : (
-          <div className="h-40 bg-gradient-to-br from-[#F0E6F6] via-[#FAFAFA] to-[#1a1a2e]/10 flex items-center justify-center relative overflow-hidden">
-            <Sparkles className="absolute top-3 right-3 w-4 h-4 text-[#833AB4]/15" />
-            <span className="text-5xl font-serif italic text-[#833AB4]/20 select-none">
-              {spa.business_name.charAt(0)}
-            </span>
-          </div>
-        )}
+        <div className="h-40 overflow-hidden">
+          <Image
+            src={spa.cover_image_url || getPlaceholderImage(spa.business_name)}
+            alt={spa.business_name}
+            width={400}
+            height={160}
+            className="w-full h-full object-cover"
+          />
+        </div>
 
         <div className="p-6">
           <Link href={`/med-spa/${spa.url_slug}`} className="group/link">

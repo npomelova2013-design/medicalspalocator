@@ -7,6 +7,7 @@ import { VerifiedBadge } from '@/components/shared/VerifiedBadge'
 import { TreatmentTag } from '@/components/shared/TreatmentTag'
 import { ClickToCall } from '@/components/shared/ClickToCall'
 import { getTopTreatments } from '@/lib/utils/treatments'
+import { getPlaceholderImage } from '@/lib/utils/images'
 import type { MedSpaCard as MedSpaCardType } from '@/types/database'
 
 interface Props {
@@ -37,23 +38,15 @@ export function PremiumMedSpaCard({ spa }: Props) {
                 </h3>
               </Link>
             </div>
-            {spa.cover_image_url ? (
-              <div className="w-20 h-20 rounded-xl shadow-md overflow-hidden ml-4 flex-shrink-0">
-                <Image
-                  src={spa.cover_image_url}
-                  alt={spa.business_name}
-                  width={80}
-                  height={80}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ) : (
-              <div className="w-20 h-20 rounded-xl shadow-md overflow-hidden ml-4 flex-shrink-0 bg-gradient-to-br from-[#F0E6F6] via-[#FAFAFA] to-[#1a1a2e]/10 flex items-center justify-center">
-                <span className="text-3xl font-serif italic text-[#833AB4]/25 select-none">
-                  {spa.business_name.charAt(0)}
-                </span>
-              </div>
-            )}
+            <div className="w-20 h-20 rounded-xl shadow-md overflow-hidden ml-4 flex-shrink-0">
+              <Image
+                src={spa.cover_image_url || getPlaceholderImage(spa.business_name)}
+                alt={spa.business_name}
+                width={80}
+                height={80}
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
 
           <StarRating rating={spa.google_rating} count={spa.google_reviews_count} size="md" />

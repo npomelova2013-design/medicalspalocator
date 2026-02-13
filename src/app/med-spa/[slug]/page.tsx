@@ -13,6 +13,7 @@ import { JsonLd, generateListingJsonLd } from '@/components/shared/JsonLd'
 import { MedSpaCard } from '@/components/listings/MedSpaCard'
 import { ConsultationForm } from '@/components/forms/ConsultationForm'
 import { parseTreatments } from '@/lib/utils/treatments'
+import { getPlaceholderImage } from '@/lib/utils/images'
 import { formatAddress, slugifyCity } from '@/lib/utils/formatting'
 import { PageViewTracker } from '@/components/detail/PageViewTracker'
 
@@ -59,11 +60,11 @@ export default async function ListingPage({ params }: Props) {
           <div className="gradient-orb gradient-orb-champagne absolute -bottom-20 -left-20 h-[300px] w-[300px] animate-float-delayed opacity-15" />
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
-            <nav className="text-sm text-[#833AB4]/40 mb-8">
-              <Link href="/" className="hover:text-[#833AB4] transition">Home</Link>
-              <span className="mx-2 text-[#833AB4]/20">/</span>
-              <Link href={`/city/${slugifyCity(spa.city)}`} className="hover:text-[#833AB4] transition">{spa.city}</Link>
-              <span className="mx-2 text-[#833AB4]/20">/</span>
+            <nav className="text-sm text-white/50 mb-8">
+              <Link href="/" className="hover:text-white transition">Home</Link>
+              <span className="mx-2 text-white/30">/</span>
+              <Link href={`/city/${slugifyCity(spa.city)}`} className="hover:text-white transition">{spa.city}</Link>
+              <span className="mx-2 text-white/30">/</span>
               <span className="text-white/80">{spa.business_name}</span>
             </nav>
 
@@ -90,11 +91,11 @@ export default async function ListingPage({ params }: Props) {
       <div className={`max-w-7xl mx-auto px-4 sm:px-6 py-12 ${!isPremium ? 'pt-24' : ''}`}>
         {/* Breadcrumb — only for non-premium */}
         {!isPremium && (
-          <nav className="text-sm text-[#262626]/40 mb-8">
-            <Link href="/" className="hover:text-[#833AB4] transition">Home</Link>
-            <span className="mx-2 text-[#262626]/20">/</span>
-            <Link href={`/city/${slugifyCity(spa.city)}`} className="hover:text-[#833AB4] transition">{spa.city}</Link>
-            <span className="mx-2 text-[#262626]/20">/</span>
+          <nav className="text-sm text-[#262626]/50 mb-8">
+            <Link href="/" className="hover:text-[#E1306C] transition">Home</Link>
+            <span className="mx-2 text-[#262626]/30">/</span>
+            <Link href={`/city/${slugifyCity(spa.city)}`} className="hover:text-[#E1306C] transition">{spa.city}</Link>
+            <span className="mx-2 text-[#262626]/30">/</span>
             <span className="text-[#262626]/70">{spa.business_name}</span>
           </nav>
         )}
@@ -123,10 +124,10 @@ export default async function ListingPage({ params }: Props) {
             )}
 
             {/* Cover Image — for non-premium listings */}
-            {!isPremium && spa.cover_image_url && (
+            {!isPremium && (
               <div className="rounded-2xl overflow-hidden border border-[#833AB4]/10 shadow-sm">
                 <Image
-                  src={spa.cover_image_url}
+                  src={spa.cover_image_url || getPlaceholderImage(spa.business_name)}
                   alt={spa.business_name}
                   width={800}
                   height={400}
