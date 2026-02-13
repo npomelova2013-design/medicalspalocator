@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { MedSpaGrid } from '@/components/listings/MedSpaGrid'
-import { searchMedSpas } from '@/lib/queries/search'
+import { searchMedSpas, browseAllMedSpas } from '@/lib/queries/search'
 import { Search } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -25,35 +25,47 @@ export default async function SearchPage({ searchParams }: Props) {
     const result = await searchMedSpas(query)
     spas = result.data
     count = result.count
+  } else {
+    const result = await browseAllMedSpas()
+    spas = result.data
+    count = result.count
   }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 pt-24">
       <nav className="text-sm text-[#262626]/50 mb-4">
         <Link href="/" className="hover:text-[#E1306C]">Home</Link>
-        <span className="mx-2">/</span>
-        <span className="text-[#262626]">Search</span>
+        <span className="mx-2 text-[#262626]/30">/</span>
+        <span className="text-[#262626]">{query ? 'Search' : 'Browse'}</span>
       </nav>
 
-      <h1 className="text-3xl font-bold text-[#262626] mb-2">
-        {query ? `Search Results` : 'Search Med Spas'}
+      <h1 className="text-3xl md:text-4xl font-serif italic font-semibold tracking-editorial text-[#262626] mb-2">
+        {query ? 'Search Results' : 'Browse All Med Spas'}
       </h1>
 
-      {query && (
-        <p className="text-[#262626]/60 mb-6">
-          {count} result{count !== 1 ? 's' : ''} for &ldquo;{query}&rdquo;
-        </p>
-      )}
+      <p className="text-[#262626]/60 mb-6">
+        {query
+          ? <>{count} result{count !== 1 ? 's' : ''} for &ldquo;{query}&rdquo;</>
+          : <>{count} verified med spas in Illinois</>
+        }
+      </p>
 
+      {/* Search bar for inline searching */}
       {!query && (
-        <div className="text-center py-16">
-          <Search className="w-16 h-16 text-[#262626]/30 mx-auto mb-4" />
-          <p className="text-[#262626]/50 text-lg mb-2">Enter a search term to find med spas</p>
-          <p className="text-[#262626]/40">Try searching by city name, treatment, or spa name</p>
+        <div className="mb-8 max-w-xl">
+          <form action="/search" method="GET" className="relative flex items-center">
+            <Search className="pointer-events-none absolute left-4 h-4 w-4 text-[#262626]/30" />
+            <input
+              type="text"
+              name="q"
+              placeholder="Filter by name, city, or treatment..."
+              className="w-full pl-11 pr-4 py-3 rounded-xl bg-white border border-[#833AB4]/15 text-sm text-[#262626] placeholder:text-[#262626]/40 focus:outline-none focus:border-[#833AB4]/30 focus:shadow-[0_0_0_3px_rgba(131,58,180,0.08)] transition-all"
+            />
+          </form>
         </div>
       )}
 
-      {query && <MedSpaGrid spas={spas} emptyMessage="No results found. Try a different search term." />}
+      <MedSpaGrid spas={spas} emptyMessage="No results found. Try a different search term." />
     </div>
   )
 }

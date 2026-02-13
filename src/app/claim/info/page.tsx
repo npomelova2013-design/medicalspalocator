@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { CheckCircle2, BarChart3, Star, Shield } from 'lucide-react'
+import { CheckCircle2, BarChart3, Star, Shield, Search } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Claim Your Med Spa Listing',
@@ -38,13 +37,26 @@ export default function ClaimInfoPage() {
 
       <div className="text-center bg-gradient-to-br from-[#FAFAFA] to-[#F0E6F6]/20 border border-[#833AB4]/10 rounded-xl p-8">
         <h2 className="text-xl font-serif italic font-semibold text-[#262626] mb-2">Ready to Get Started?</h2>
-        <p className="text-[#262626]/60 mb-4">Search for your med spa below and click &ldquo;Claim This Listing&rdquo;</p>
-        <Link
-          href="/search"
-          className="inline-block bg-gradient-to-r from-[#833AB4] to-[#E1306C] text-white font-medium px-8 py-3 rounded-full transition-all shadow-lg shadow-[#833AB4]/20 hover:shadow-xl hover:shadow-[#833AB4]/30"
-        >
-          Find Your Listing
-        </Link>
+        <p className="text-[#262626]/60 mb-6">Search for your med spa below and click &ldquo;Claim This Listing&rdquo;</p>
+
+        {/* Inline search form */}
+        <form action="/search" method="GET" className="max-w-lg mx-auto">
+          <div className="relative flex items-center rounded-2xl bg-white border border-[#833AB4]/15 shadow-lg shadow-black/[0.06] transition-all focus-within:border-[#833AB4]/40 focus-within:shadow-xl">
+            <Search className="pointer-events-none absolute left-5 h-5 w-5 text-[#262626]/30" />
+            <input
+              type="text"
+              name="q"
+              placeholder="Enter your med spa name..."
+              className="w-full rounded-2xl border-0 bg-transparent py-4 pl-14 pr-36 text-base text-[#262626] placeholder:text-[#262626]/30 focus:outline-none focus:ring-0"
+            />
+            <button
+              type="submit"
+              className="absolute right-3 rounded-xl bg-gradient-to-r from-[#833AB4] to-[#E1306C] px-6 py-2.5 text-sm font-semibold text-white shadow-md shadow-[#833AB4]/25 transition-all hover:shadow-lg hover:shadow-[#E1306C]/30 hover:scale-[1.02] active:scale-[0.98]"
+            >
+              Find Listing
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   )

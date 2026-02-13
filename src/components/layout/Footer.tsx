@@ -33,9 +33,9 @@ export function Footer() {
             </div>
             <Link
               href="/claim/info"
-              className="shrink-0 bg-gradient-to-r from-[#833AB4] to-[#E1306C] text-white font-semibold px-8 py-3 rounded-full hover:shadow-lg hover:shadow-[#833AB4]/20 transition-all"
+              className="shrink-0 bg-white text-[#262626] font-semibold px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
-              Get Listed Today
+              Get Listed Today &rarr;
             </Link>
           </div>
         </div>

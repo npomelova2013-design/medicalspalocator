@@ -7,6 +7,28 @@ const CARD_FIELDS = `
   listing_tier, is_verified, logo_url, cover_image_url, special_offer, featured_order
 `
 
+export async function browseAllMedSpas(
+  options?: { page?: number; limit?: number }
+): Promise<{ data: MedSpaCard[]; count: number }> {
+  const supabase = await createServerSupabase()
+  const page = options?.page || 1
+  const limit = options?.limit || 24
+  const offset = (page - 1) * limit
+
+  const { data, count } = await supabase
+    .from('med_spas')
+    .select(CARD_FIELDS, { count: 'exact' })
+    .eq('is_active', true)
+    .order('google_rating', { ascending: false, nullsFirst: false })
+    .order('google_reviews_count', { ascending: false })
+    .range(offset, offset + limit - 1)
+
+  return {
+    data: (data || []) as MedSpaCard[],
+    count: count || 0,
+  }
+}
+
 export async function searchMedSpas(
   query: string,
   options?: { page?: number; limit?: number }
