@@ -1,29 +1,18 @@
 'use client'
 
 import Link from 'next/link'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { Search, ArrowRight } from 'lucide-react'
-import { useRouter, usePathname } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-  const [scrolled, setScrolled] = useState(false)
   const [searchFocused, setSearchFocused] = useState(false)
   const router = useRouter()
-  const pathname = usePathname()
 
-  // On homepage, header starts transparent/white text; on all other pages, always dark text
-  const isDarkText = scrolled || pathname !== '/'
-
-  const handleScroll = useCallback(() => {
-    setScrolled(window.scrollY > 100)
-  }, [])
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [handleScroll])
+  // Always use dark text — hero has white overlay so white text is invisible
+  const isDarkText = true
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {

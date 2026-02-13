@@ -20,13 +20,13 @@ export function MedSpaCard({ spa }: Props) {
   return (
     <div className="gradient-border-hover group">
       <div className="rounded-2xl border border-[#833AB4]/10 bg-white overflow-hidden transition-all duration-300 shadow-md shadow-black/[0.06]">
-        <div className="h-40 overflow-hidden">
+        <div className="h-48 overflow-hidden">
           <Image
             src={spa.cover_image_url || getPlaceholderImage(spa.business_name)}
             alt={spa.business_name}
             width={400}
-            height={160}
-            className="w-full h-full object-cover"
+            height={192}
+            className="w-full h-full object-cover object-top"
           />
         </div>
 

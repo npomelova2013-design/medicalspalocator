@@ -44,7 +44,7 @@ export function PremiumMedSpaCard({ spa }: Props) {
                 alt={spa.business_name}
                 width={80}
                 height={80}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
               />
             </div>
           </div>
