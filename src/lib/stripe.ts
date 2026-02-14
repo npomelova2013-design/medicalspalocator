@@ -1,11 +1,15 @@
 import Stripe from 'stripe'
 
-let _stripe: Stripe | null = null
-
+// Avoid caching the Stripe instance in serverless — create fresh each time
+// This prevents stale connection issues on Vercel where the Node.js http agent
+// from a previous cold start may be dead
 function getStripe(): Stripe | null {
   if (!process.env.STRIPE_SECRET_KEY) return null
-  if (!_stripe) _stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
-  return _stripe
+  return new Stripe(process.env.STRIPE_SECRET_KEY, {
+    httpClient: Stripe.createFetchHttpClient(), // use fetch instead of Node http — works in serverless
+    maxNetworkRetries: 2,
+    telemetry: false,
+  })
 }
 
 export { getStripe }
