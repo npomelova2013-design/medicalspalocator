@@ -75,6 +75,29 @@ export function getListingConfirmationHtml(ownerName: string, businessName: stri
   `)
 }
 
+export function getUpgradeConfirmationHtml(name: string, plan: string): string {
+  const planLabel = plan.charAt(0).toUpperCase() + plan.slice(1)
+  return emailWrapper(`
+    <h2 style="color: #262626; margin: 0 0 12px 0; font-size: 22px;">Welcome to ${planLabel}, ${name}!</h2>
+    <p style="color: #666; line-height: 1.6; font-size: 15px;">
+      Your subscription is now active. Your listing has been upgraded and you'll start seeing results immediately.
+    </p>
+    ${stepsBox([
+      'Your listing is now boosted with priority placement in search results.',
+      'Complete your profile — add photos, a video, and your special offers.',
+      'Start receiving patient inquiries directly through your listing.',
+    ])}
+    <div style="text-align: center; margin: 24px 0;">
+      <a href="https://medicalspalocator.com/admin" style="display: inline-block; background: linear-gradient(135deg, #833AB4, #E1306C); color: white; text-decoration: none; padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 14px;">
+        Manage Your Listing
+      </a>
+    </div>
+    <p style="color: #999; font-size: 13px; line-height: 1.5;">
+      Need help getting started? Just reply to this email and we'll assist you.
+    </p>
+  `)
+}
+
 interface AdminNotificationData {
   name: string | null
   email: string | null

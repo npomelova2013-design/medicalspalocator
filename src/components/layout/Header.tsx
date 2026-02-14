@@ -103,6 +103,15 @@ export function Header() {
                 <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1.5px] transition-all duration-300 group-hover:w-full bg-[#833AB4]" />
               </Link>
               <Link
+                href="/pricing"
+                className={`relative text-[13px] font-medium tracking-wide uppercase transition-colors duration-300 group py-1 ${
+                  isDarkText ? 'text-[#262626]/80 hover:text-[#262626]' : 'text-white/90 hover:text-white'
+                }`}
+              >
+                Pricing
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1.5px] transition-all duration-300 group-hover:w-full bg-[#833AB4]" />
+              </Link>
+              <Link
                 href="/claim/info"
                 className={`inline-flex items-center gap-1.5 text-[13px] font-medium tracking-wide px-5 py-2.5 rounded-full transition-all duration-300 shadow-sm ${
                   isDarkText
@@ -192,6 +201,15 @@ export function Header() {
               }`}
             >
               Browse All
+            </Link>
+            <Link
+              href="/pricing"
+              onClick={closeMobile}
+              className={`text-2xl font-serif italic text-[#262626] hover:text-[#E1306C] transition-all duration-500 delay-250 transform ${
+                mobileOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+              }`}
+            >
+              Pricing
             </Link>
             <Link
               href="/claim/info"

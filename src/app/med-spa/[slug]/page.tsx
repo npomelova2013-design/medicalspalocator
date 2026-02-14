@@ -16,6 +16,7 @@ import { parseTreatments } from '@/lib/utils/treatments'
 import { getPlaceholderImage } from '@/lib/utils/images'
 import { formatAddress, slugifyCity } from '@/lib/utils/formatting'
 import { PageViewTracker } from '@/components/detail/PageViewTracker'
+import { ReviewsSection } from '@/components/reviews/ReviewsSection'
 
 export const revalidate = 1800
 
@@ -233,6 +234,13 @@ export default async function ListingPage({ params }: Props) {
                 </div>
               </div>
             )}
+
+            {/* Reviews */}
+            <ReviewsSection
+              medSpaId={spa.id}
+              googleRating={spa.google_rating}
+              googleReviewsCount={spa.google_reviews_count}
+            />
 
             {/* Claim CTA */}
             {!spa.is_claimed && (

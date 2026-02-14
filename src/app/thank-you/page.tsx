@@ -34,6 +34,16 @@ const stepsConfig: Record<string, {
       { icon: Sparkles, label: 'You Go Live', description: 'Your med spa appears in search results and starts receiving patient inquiries.' },
     ],
   },
+  upgrade: {
+    title: 'Upgrade Request Received!',
+    subtitle: "We're processing your premium upgrade.",
+    timeline: 'Within 24 hours',
+    steps: [
+      { icon: FileSearch, label: 'We Process', description: 'We review your request and prepare your premium listing upgrade.' },
+      { icon: Phone, label: 'We Activate', description: 'Your listing is upgraded with priority placement, badges, and enhanced features.' },
+      { icon: Sparkles, label: 'Start Growing', description: 'Begin receiving more patient inquiries and track results in your dashboard.' },
+    ],
+  },
   default: {
     title: 'Thanks for Your Request!',
     subtitle: "We'll match you with the perfect med spa.",

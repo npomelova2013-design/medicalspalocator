@@ -105,13 +105,13 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/claim/info" className="text-sm text-white/60 hover:text-white transition">
-                  Premium Listings
+                <Link href="/pricing" className="text-sm text-white/60 hover:text-white transition">
+                  Premium Plans
                 </Link>
               </li>
               <li>
-                <Link href="/claim/info" className="text-sm text-white/60 hover:text-white transition">
-                  Advertising
+                <Link href="/pricing" className="text-sm text-white/60 hover:text-white transition">
+                  Pricing
                 </Link>
               </li>
             </ul>

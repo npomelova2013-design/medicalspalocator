@@ -55,6 +55,14 @@ export interface MedSpa {
   data_completeness: number | null
   created_at: string
   updated_at: string
+  // Stripe & subscription
+  stripe_customer_id: string | null
+  stripe_subscription_id: string | null
+  subscription_status: 'none' | 'active' | 'past_due' | 'canceled' | string
+  // Outreach / sales
+  outreach_status: 'not_contacted' | 'contacted' | 'interested' | 'declined' | 'converted'
+  outreach_notes: string | null
+  last_contacted: string | null
 }
 
 export interface MedSpaCard {
