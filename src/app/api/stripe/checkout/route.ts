@@ -22,17 +22,27 @@ export async function POST(request: NextRequest) {
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://web-five-navy-28.vercel.app'
 
-    const checkoutUrl = await createCheckoutSession({
-      plan: plan as PlanKey,
-      medSpaId: medSpaId || undefined,
-      email: email.trim(),
-      businessName: businessName.trim(),
-      successUrl: `${siteUrl}/pricing/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancelUrl: `${siteUrl}/pricing`,
-    })
+    let checkoutUrl: string | null = null
+    try {
+      checkoutUrl = await createCheckoutSession({
+        plan: plan as PlanKey,
+        medSpaId: medSpaId || undefined,
+        email: email.trim(),
+        businessName: businessName.trim(),
+        successUrl: `${siteUrl}/pricing/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancelUrl: `${siteUrl}/pricing`,
+      })
+    } catch (stripeErr) {
+      console.error('Stripe createCheckoutSession error:', stripeErr instanceof Error ? stripeErr.message : stripeErr)
+      return NextResponse.json(
+        { error: `Stripe error: ${stripeErr instanceof Error ? stripeErr.message : 'Unknown error'}` },
+        { status: 500 }
+      )
+    }
 
     if (!checkoutUrl) {
-      // Stripe not configured — fall back to saving as lead
+      // Stripe not configured or price ID missing — fall back to saving as lead
+      console.warn('Checkout returned null — Stripe key or price ID likely missing. Plan:', plan)
       const supabase = createAdminClient()
       await supabase.from('consumer_leads').insert({
         first_name: name?.trim() || null,
@@ -52,6 +62,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ url: checkoutUrl })
   } catch (err) {
     console.error('Checkout API error:', err instanceof Error ? err.message : err)
-    return NextResponse.json({ error: 'Failed to create checkout session' }, { status: 500 })
+    return NextResponse.json(
+      { error: `Failed to create checkout session: ${err instanceof Error ? err.message : 'Unknown error'}` },
+      { status: 500 }
+    )
   }
 }
