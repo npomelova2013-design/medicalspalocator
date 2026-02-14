@@ -20,7 +20,14 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Business name required' }, { status: 400 })
     }
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://web-five-navy-28.vercel.app'
+    // Use NEXT_PUBLIC_SITE_URL if valid, otherwise fall back to Vercel URL
+    const envUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim()
+    const siteUrl = (envUrl && envUrl.startsWith('http'))
+      ? envUrl.replace(/\/+$/, '') // strip trailing slashes
+      : 'https://web-five-navy-28.vercel.app'
+
+    const successUrl = `${siteUrl}/pricing/success?session_id={CHECKOUT_SESSION_ID}`
+    const cancelUrl = `${siteUrl}/pricing`
 
     let checkoutUrl: string | null = null
     try {
@@ -29,8 +36,8 @@ export async function POST(request: NextRequest) {
         medSpaId: medSpaId || undefined,
         email: email.trim(),
         businessName: businessName.trim(),
-        successUrl: `${siteUrl}/pricing/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancelUrl: `${siteUrl}/pricing`,
+        successUrl,
+        cancelUrl,
       })
     } catch (stripeErr) {
       console.error('Stripe createCheckoutSession error:', stripeErr instanceof Error ? stripeErr.message : stripeErr)
