@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import Image from 'next/image'
+import { SafeImage } from '@/components/shared/SafeImage'
 import { MapPin, Globe, Mail } from 'lucide-react'
 import { getMedSpaBySlug, getAllSlugs, getNearbySpas } from '@/lib/queries/med-spas'
 import { StarRating } from '@/components/shared/StarRating'
@@ -126,12 +126,13 @@ export default async function ListingPage({ params }: Props) {
             {/* Cover Image — for non-premium listings */}
             {!isPremium && (
               <div className="rounded-2xl overflow-hidden border border-[#833AB4]/10 shadow-sm">
-                <Image
+                <SafeImage
                   src={spa.cover_image_url || getPlaceholderImage(spa.business_name)}
                   alt={spa.business_name}
                   width={800}
                   height={400}
-                  className="w-full h-64 md:h-80 object-cover object-top"
+                  className="w-full aspect-[2/1] object-cover object-center"
+                  fallbackSrc={getPlaceholderImage(spa.business_name)}
                 />
               </div>
             )}
@@ -143,12 +144,13 @@ export default async function ListingPage({ params }: Props) {
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                   {spa.gallery_urls.slice(0, 6).map((url, i) => (
                     <div key={i} className="aspect-square rounded-xl overflow-hidden border border-[#833AB4]/10">
-                      <Image
+                      <SafeImage
                         src={url}
                         alt={`${spa.business_name} photo ${i + 1}`}
                         width={300}
                         height={300}
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        fallbackSrc={getPlaceholderImage(spa.business_name)}
                       />
                     </div>
                   ))}

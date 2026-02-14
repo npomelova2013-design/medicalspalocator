@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import { SafeImage } from '@/components/shared/SafeImage'
 import { MapPin, Sparkles } from 'lucide-react'
 import { StarRating } from '@/components/shared/StarRating'
 import { PremiumBadge } from '@/components/shared/PremiumBadge'
@@ -21,12 +21,13 @@ export function MedSpaCard({ spa }: Props) {
     <div className="gradient-border-hover group">
       <div className="rounded-2xl border border-[#833AB4]/10 bg-white overflow-hidden transition-all duration-300 shadow-md shadow-black/[0.06]">
         <div className="h-48 overflow-hidden">
-          <Image
+          <SafeImage
             src={spa.cover_image_url || getPlaceholderImage(spa.business_name)}
             alt={spa.business_name}
             width={400}
             height={192}
-            className="w-full h-full object-cover object-top"
+            className="w-full h-full object-cover object-center"
+            fallbackSrc={getPlaceholderImage(spa.business_name)}
           />
         </div>
 

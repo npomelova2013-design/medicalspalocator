@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import { SafeImage } from '@/components/shared/SafeImage'
 import { MapPin, Sparkles } from 'lucide-react'
 import { StarRating } from '@/components/shared/StarRating'
 import { PremiumBadge } from '@/components/shared/PremiumBadge'
@@ -39,12 +39,13 @@ export function PremiumMedSpaCard({ spa }: Props) {
               </Link>
             </div>
             <div className="w-20 h-20 rounded-xl shadow-md overflow-hidden ml-4 flex-shrink-0">
-              <Image
+              <SafeImage
                 src={spa.cover_image_url || getPlaceholderImage(spa.business_name)}
                 alt={spa.business_name}
                 width={80}
                 height={80}
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-center"
+                fallbackSrc={getPlaceholderImage(spa.business_name)}
               />
             </div>
           </div>
