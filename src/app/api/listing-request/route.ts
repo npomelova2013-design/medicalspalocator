@@ -72,23 +72,29 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Failed to save listing request' }, { status: 500 })
     }
 
-    // Fire-and-forget email notifications
-    sendEmail({
-      to: emailClean,
-      subject: 'Your listing request has been received!',
-      html: getListingConfirmationHtml(ownerNameClean, businessNameClean),
-    }).catch(() => {})
-    notifyAdmin(
-      `New Listing Request: ${businessNameClean} (${cityClean})`,
-      getAdminNotificationHtml({
-        name: ownerNameClean,
-        email: emailClean,
-        phone: phoneClean,
-        source: 'listing_request',
-        serviceInterest: `New Listing - ${businessNameClean}, ${cityClean}`,
-        notes: noteParts,
-      })
-    ).catch(() => {})
+    // Send email notifications (await so Vercel doesn't kill the function early)
+    try {
+      await Promise.all([
+        sendEmail({
+          to: emailClean,
+          subject: 'Your listing request has been received!',
+          html: getListingConfirmationHtml(ownerNameClean, businessNameClean),
+        }),
+        notifyAdmin(
+          `New Listing Request: ${businessNameClean} (${cityClean})`,
+          getAdminNotificationHtml({
+            name: ownerNameClean,
+            email: emailClean,
+            phone: phoneClean,
+            source: 'listing_request',
+            serviceInterest: `New Listing - ${businessNameClean}, ${cityClean}`,
+            notes: noteParts,
+          })
+        ),
+      ])
+    } catch (emailErr) {
+      console.error('Email notification error:', emailErr)
+    }
 
     return NextResponse.json({ success: true })
   } catch (err) {

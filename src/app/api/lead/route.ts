@@ -72,26 +72,32 @@ export async function POST(request: NextRequest) {
       page_path: sanitize(landing_page, 500) || '/',
     })
 
-    // Fire-and-forget email notifications
-    if (emailClean) {
-      sendEmail({
-        to: emailClean,
-        subject: 'Your consultation request has been received!',
-        html: getLeadConfirmationHtml(name),
-      }).catch(() => {})
+    // Send email notifications (await so Vercel doesn't kill the function early)
+    try {
+      await Promise.all([
+        emailClean
+          ? sendEmail({
+              to: emailClean,
+              subject: 'Your consultation request has been received!',
+              html: getLeadConfirmationHtml(name),
+            })
+          : Promise.resolve(),
+        notifyAdmin(
+          `New Lead: ${name} - ${sanitize(service_interest, 200) || 'General'}`,
+          getAdminNotificationHtml({
+            name,
+            email: emailClean,
+            phone: phoneClean,
+            source: 'website_form',
+            serviceInterest: sanitize(service_interest, 200),
+            city: sanitize(preferred_city, 100),
+            notes: sanitize(notes, 500),
+          })
+        ),
+      ])
+    } catch (emailErr) {
+      console.error('Email notification error:', emailErr)
     }
-    notifyAdmin(
-      `New Lead: ${name} - ${sanitize(service_interest, 200) || 'General'}`,
-      getAdminNotificationHtml({
-        name,
-        email: emailClean,
-        phone: phoneClean,
-        source: 'website_form',
-        serviceInterest: sanitize(service_interest, 200),
-        city: sanitize(preferred_city, 100),
-        notes: sanitize(notes, 500),
-      })
-    ).catch(() => {})
 
     return NextResponse.json({ success: true, id: data?.id })
   } catch (err) {

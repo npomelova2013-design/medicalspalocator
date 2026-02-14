@@ -57,23 +57,29 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Failed to save claim' }, { status: 500 })
     }
 
-    // Fire-and-forget email notifications
-    sendEmail({
-      to: emailClean,
-      subject: 'Your claim request has been received!',
-      html: getClaimConfirmationHtml(nameClean, sanitize(medSpaId, 100) || 'your business'),
-    }).catch(() => {})
-    notifyAdmin(
-      `New Claim Request: ${nameClean}`,
-      getAdminNotificationHtml({
-        name: nameClean,
-        email: emailClean,
-        phone: phoneClean,
-        source: 'claim_form',
-        serviceInterest: `Claim Request - ${sanitize(role, 50) || 'owner'}`,
-        notes: `How heard: ${sanitize(howHeard, 100) || 'unknown'}. ${sanitize(message, 500) || ''}`.trim(),
-      })
-    ).catch(() => {})
+    // Send email notifications (await so Vercel doesn't kill the function early)
+    try {
+      await Promise.all([
+        sendEmail({
+          to: emailClean,
+          subject: 'Your claim request has been received!',
+          html: getClaimConfirmationHtml(nameClean, sanitize(medSpaId, 100) || 'your business'),
+        }),
+        notifyAdmin(
+          `New Claim Request: ${nameClean}`,
+          getAdminNotificationHtml({
+            name: nameClean,
+            email: emailClean,
+            phone: phoneClean,
+            source: 'claim_form',
+            serviceInterest: `Claim Request - ${sanitize(role, 50) || 'owner'}`,
+            notes: `How heard: ${sanitize(howHeard, 100) || 'unknown'}. ${sanitize(message, 500) || ''}`.trim(),
+          })
+        ),
+      ])
+    } catch (emailErr) {
+      console.error('Email notification error:', emailErr)
+    }
 
     return NextResponse.json({ success: true })
   } catch (err) {
