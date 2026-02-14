@@ -4,8 +4,9 @@ import Stripe from 'stripe'
 // This prevents stale connection issues on Vercel where the Node.js http agent
 // from a previous cold start may be dead
 function getStripe(): Stripe | null {
-  if (!process.env.STRIPE_SECRET_KEY) return null
-  return new Stripe(process.env.STRIPE_SECRET_KEY, {
+  const key = process.env.STRIPE_SECRET_KEY?.trim()
+  if (!key) return null
+  return new Stripe(key, {
     httpClient: Stripe.createFetchHttpClient(), // use fetch instead of Node http — works in serverless
     maxNetworkRetries: 2,
     telemetry: false,
@@ -38,7 +39,8 @@ export const PLANS = {
 export type PlanKey = keyof typeof PLANS
 
 export function getPriceId(plan: PlanKey): string | null {
-  return process.env[PLANS[plan].envKey] || null
+  const raw = process.env[PLANS[plan].envKey]
+  return raw?.trim() || null
 }
 
 export async function createCheckoutSession(opts: {
