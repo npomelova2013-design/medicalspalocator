@@ -122,7 +122,7 @@ export function PricingPageClient({ totalSpas, totalCities }: Props) {
             Grow Your Med Spa{' '}
             <span className="instagram-gradient-text">Business</span>
           </h1>
-          <p className="mt-6 text-lg text-white/50 max-w-2xl mx-auto">
+          <p className="mt-6 text-lg text-white/60 max-w-2xl mx-auto">
             Join {totalSpas.toLocaleString()}+ med spas across {totalCities} cities. Get more patients with premium placement, verified badges, and lead capture tools.
           </p>
         </div>
@@ -230,7 +230,7 @@ export function PricingPageClient({ totalSpas, totalCities }: Props) {
             </thead>
             <tbody>
               {comparisonFeatures.map((feat) => (
-                <tr key={feat.name} className="border-b border-[#833AB4]/5 hover:bg-[#F0E6F6]/30 transition">
+                <tr key={feat.name} className="border-b border-[#833AB4]/5 hover:bg-[#F0E6F6]/50 transition">
                   <td className="py-3 pr-4 text-[#262626]/70">{feat.name}</td>
                   {(['free', 'claimed', 'premium', 'enterprise'] as const).map((tier) => {
                     const val = feat[tier]
@@ -272,7 +272,7 @@ export function PricingPageClient({ totalSpas, totalCities }: Props) {
                 <div key={item.label}>
                   <Icon className="w-6 h-6 text-[#E1306C] mx-auto mb-2" />
                   <p className="text-3xl font-bold text-white">{item.stat}</p>
-                  <p className="text-sm text-white/50 mt-1">{item.label}</p>
+                  <p className="text-sm text-white/60 mt-1">{item.label}</p>
                 </div>
               )
             })}
@@ -328,7 +328,7 @@ export function PricingPageClient({ totalSpas, totalCities }: Props) {
                 />
               </button>
               {openFaq === i && (
-                <div className="px-5 pb-5 text-sm text-[#262626]/60 leading-relaxed border-t border-[#833AB4]/5 pt-4">
+                <div className="px-5 pb-5 text-sm text-[#262626]/70 leading-relaxed border-t border-[#833AB4]/5 pt-4">
                   {faq.a}
                 </div>
               )}

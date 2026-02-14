@@ -4,7 +4,7 @@ import { getAllCities } from '@/lib/queries/med-spas'
 import { PricingPageClient } from '@/components/pricing/PricingPageClient'
 
 export const metadata: Metadata = {
-  title: 'Pricing — Grow Your Med Spa Business | Medical Spa Locator',
+  title: 'Pricing — Grow Your Med Spa Business',
   description:
     'Premium listing plans for med spas. Get priority placement, verified badge, photo gallery, lead capture, and analytics. Plans from $97/month.',
 }
